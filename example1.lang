@@ -1,0 +1,27 @@
+Hello
+    num is number 1 plus 2 minus 3 times 4 divides 5.
+
+    if: num is greater than -1
+    Then.
+        write: num.
+    Now.
+    
+    otherwise:
+    Then.
+        write: "error".
+    Now.
+
+    as long as: num is less than 10
+    Then.
+        pixel: blue, num, num.
+        rectangle: red, num plus 1, num plus 1, num plus 2, num minus 2.
+        note: num plus 1.
+        num is num plus 1.
+    Now.
+
+    x is number 0.
+    as long as: x is less or equal to 100
+    Then.
+        write: x.
+    Now.
+Bye
