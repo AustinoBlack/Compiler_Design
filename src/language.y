@@ -2,12 +2,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "node.h"
+#include "opcodes.h"
+#include "helper.h"
+#include "symtab.h"
 
 int lines = 1;
 
 extern int yylex();
 extern int yyparse();
 void yyerror(const char* msg);
+extern SymbolTable symboltable;
 %}
 
 %union {
@@ -113,7 +117,7 @@ rectangle_statement: RECTANGLE color_literal COMMA expression COMMA expression C
 
 pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD { 
 	$$ = new Node("pixel");
-	Constant* c = new Constant("colo");
+	Constant* c = new Constant("color");
 	c->set_value($2); 
 	$$->add_child(c); 
 	$$->add_child($4); 

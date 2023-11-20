@@ -11,14 +11,27 @@ class Node {
       string m_token;
       vector<Node *> m_children;
    public:
+      int m_lineno;
+
       Node(string name);
       string token() const;
       void set_token(const string& name);
       virtual void visit(int depth) const;
+      virtual int generate_code() const;
       void add_child(Node* const kid);
+      void generate_point(int x, int y) const;
+      void generate_rect(int x1, int y1, int w, int h) const;
+      static int eq(int left, int right);
+      static int ne(int left, int right);
+      static int less(int left, int right);
+      static int greater(int left, int right);
+      static int less_equal(int left, int right);
+      static int greater_equal(int left, int right);
+      static int logical_or(int left, int right);
+      static int logical_and(int left, int right);
 };
 
-class Constant : public Node {
+class Constant  : public Node {
    protected:
       int m_value;
    public:
@@ -47,5 +60,7 @@ class Identifier : public Node {
       void set_value(const string& v);
       void visit(int depth) const;
 };
+
+extern const Node* current;
 
 #endif //NODE_H

@@ -2,6 +2,7 @@
 // C stuff here
 #include <stdio.h>
 #include "language.tab.h"
+#include "symtab.h"
 %}
 
 /* regular expressions here */
@@ -13,6 +14,7 @@ note_literal     &[0-9]|&(1[0-2])
 
 %{ 
 extern int lines;
+extern SymbolTable symboltable;
 %}
 
 %%
