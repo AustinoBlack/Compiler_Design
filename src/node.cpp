@@ -369,6 +369,10 @@ int Node::generate_code() const //TODO pls
       m_children[0]->generate_code();
       rts(); 
    }
+	 else if (m_token == "code") {
+			m_children[0]->generate_code();
+		  m_children[1]->generate_code();
+   }
    //TODO: Add tokens for Hello and Bye?
 
    //TODO: We have an identifier token, so keep?
