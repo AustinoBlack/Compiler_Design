@@ -369,6 +369,10 @@ int Node::generate_code() const //TODO pls
       m_children[0]->generate_code();
       rts(); 
    }
+   //TODO: Add tokens for Hello and Bye?
+
+   //TODO: We have an identifier token, so keep?
+   //TODO: mayhaps edit
    else if (m_token == "identifier") {
       DEBUG("identifier");
       const Identifier* id = dynamic_cast<const Identifier *>(this);
@@ -385,6 +389,8 @@ int Node::generate_code() const //TODO pls
       }
       return t;
    }
+   //TODO: We have a constant token, so keep?
+   //TODO: mayhaps edit
    else if (m_token == "constant") {
       DEBUG("constant");
       const Constant* cstnt = dynamic_cast<const Constant *>(this);
@@ -405,7 +411,9 @@ int Node::generate_code() const //TODO pls
       else {
          abort("Constant with no value1\n", m_lineno);
       }  
-   } 
+   }
+   //TODO: We have a statement token, so keep?
+   //TODO: mayhaps edit
    else if (m_token == "statements") {
          DEBUG("statements");
          if (m_children.size() < 2) {
@@ -414,6 +422,8 @@ int Node::generate_code() const //TODO pls
          m_children[0]->generate_code(); 
          m_children[1]->generate_code(); 
    }
+   //TODO: We have an assignment token, so keep?
+   //TODO: mayhaps edit
    else if (m_token == "assignment") {
       DEBUG("assignment");
       if (m_children.size() < 2) {
@@ -452,6 +462,7 @@ int Node::generate_code() const //TODO pls
          sta_abs(st.address(variable)+1);
       }
    }
+   //TODO: add poke to lang?
    else if (m_token == "poke") {
          DEBUG("point");
       if (m_children.size() < 2) {
@@ -468,6 +479,7 @@ int Node::generate_code() const //TODO pls
       ldx_imm(0);
       sta_indx(0xfc);
    }
+   //TODO I do not think we need a move token, but idk
    else if (m_token == "move") {
          DEBUG("point");
       if (m_children.size() < 2) {
@@ -481,6 +493,7 @@ int Node::generate_code() const //TODO pls
       clc(); //Clear carry bit to mean "set position"
       jsr_abs(0xfff0); //Call kernal PLOT function
    }
+   //TODO: I think this is equivalent to our "pixel" token
    else if (m_token == "point") {
          DEBUG("point");
       if (m_children.size() < 2) {
@@ -490,6 +503,7 @@ int Node::generate_code() const //TODO pls
       int y = m_children[1]->generate_code();
       this->generate_point(x,y);
    }
+   //TODO will need to edit rectangle token to fit our code
    else if (m_token == "rect") {
          DEBUG("rect");
       if (m_children.size() < 4) {
@@ -501,6 +515,7 @@ int Node::generate_code() const //TODO pls
       int h = m_children[3]->generate_code();
       generate_rect(x,y,w,h);
    }
+   //TODO: Keep this, we have an if
    else if (m_token == "if") {
       DEBUG("if");
       if (m_children.size() < 2) {
@@ -520,6 +535,7 @@ int Node::generate_code() const //TODO pls
       bytes[backpatch+1] = low(end);
       bytes[backpatch+2] = high(end);
    }
+   //TODO: we have a while loop i think so keep this
    else if (m_token == "while") {
       DEBUG("while");
       if (m_children.size() < 2) {
@@ -547,6 +563,7 @@ int Node::generate_code() const //TODO pls
       fprintf(stderr, "While loop top should be: %lx\n", 0xc000+bytes.size());
       fprintf(stderr, "While loop top: %x\n", end);
    }
+   //TODO: We dont have an "and" token i feel like mayhaps we will need this
    else if (m_token == "and") {
       if (m_children.size() < 2) {
          abort("AND requires a left and right condition.\n", m_lineno);
@@ -556,6 +573,7 @@ int Node::generate_code() const //TODO pls
 
       return logical_and(st.address(left), st.address(right));
    }
+   //TODO: We dont have an "or" token i feel like mayhaps we will need this
    else if (m_token == "or") {
       if (m_children.size() < 2) {
          abort("OR requires a left and right condition.\n", m_lineno);
@@ -598,6 +616,7 @@ int Node::generate_code() const //TODO pls
       abort(string("Not implemented: ") + m_children[1]->m_token, m_lineno);
       return -1;
    }
+   //TODO: we have a plus token so we probs need to keep this
    else if (m_token == "plus") {
          DEBUG("plus");
       if (m_children.size() < 2) {
@@ -613,6 +632,7 @@ int Node::generate_code() const //TODO pls
       add_variables(st.address(right), st.address(result));
       return result;
    }
+   //TODO: we have a minus token so we probs need to keep this
    else if (m_token == "minus")  {
       DEBUG("minus");
       if (m_children.size() < 2) {
@@ -628,6 +648,7 @@ int Node::generate_code() const //TODO pls
       sub_variables(st.address(right), st.address(result));
       return result;
    }
+   //TODO: we have a times token so we probs need to keep this
    else if (m_token == "times") {
       int left = m_children[0]->generate_code();
       int right = m_children[1]->generate_code();
@@ -660,6 +681,9 @@ int Node::generate_code() const //TODO pls
 
       sta_abs(st.address(result));
    }
+   //TODO: we probs need to add a divide token here
+
+   //TODO: may need to edit color token to fit with our language
    else if (m_token == "color") {
       const Constant* c = dynamic_cast<const Constant *>(this);  
       if (!c) {
@@ -668,6 +692,7 @@ int Node::generate_code() const //TODO pls
       lda_imm(c->value());
       sta_z(2); //Store current color at $0002.
    }
+   //TODO: check if we need background token... could be useful to implement for game
    else if (m_token == "background") {
       const Constant* c = dynamic_cast<const Constant *>(this);  
       if (!c) {
@@ -676,6 +701,7 @@ int Node::generate_code() const //TODO pls
       lda_imm(c->value());
       sta_abs(53281); //Store current color at $D021.
    }
+   //TODO: check if we need clear token... could be useful to implement for game
    else if (m_token == "clear") {
       lda_imm(147); //Load code for CLR/HOME (0x93) into accumulator
       jsr_abs(0xffd2); //Call kernal CHROUT function to print to screen
