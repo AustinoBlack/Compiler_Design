@@ -422,6 +422,15 @@ int Node::generate_code() const //TODO pls
          m_children[0]->generate_code(); 
          m_children[1]->generate_code(); 
    }
+   else if (m_token == "number") {
+         const Constant* child = dynamic_cast<const Constant *>(this);
+	 int result = st.temporary();
+         lda_imm(low(child->value()));
+	 sta_abs(st.address(result));
+         lda_imm(high(child->value()));
+      	 sta_abs(st.address(result)+1);
+	 return result;
+   }
    //TODO: We have an assignment token, so keep?
    //TODO: mayhaps edit
    else if (m_token == "assignment") {
@@ -504,15 +513,16 @@ int Node::generate_code() const //TODO pls
       this->generate_point(x,y);
    }
    //TODO will need to edit rectangle token to fit our code
-   else if (m_token == "rect") {
+   else if (m_token == "rectangle") {
          DEBUG("rect");
-      if (m_children.size() < 4) {
-         abort("Rectangle requires x,y, width, and height.\n", m_lineno);
+      if (m_children.size() < 5) {
+         abort("Rectangle requires color,x,y, width, and height.\n", m_lineno);
       }
-      int x = m_children[0]->generate_code();
-      int y = m_children[1]->generate_code();
-      int w = m_children[2]->generate_code();
-      int h = m_children[3]->generate_code();
+      int color = dynamic_cast<Constant *>(m_children[0])->value();
+      int x = m_children[1]->generate_code();
+      int y = m_children[2]->generate_code();
+      int w = m_children[3]->generate_code();
+      int h = m_children[4]->generate_code();
       generate_rect(x,y,w,h);
    }
    //TODO: Keep this, we have an if

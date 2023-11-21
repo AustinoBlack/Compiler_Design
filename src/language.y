@@ -69,7 +69,9 @@ extern SymbolTable symboltable;
 %type<intval> color_literal
 
 %%
-program: PRGMBEGIN code PRGMEND { $$ = new Node("program"); $$->add_child($2); $$->visit(0); }; 
+program: PRGMBEGIN code PRGMEND { $$ = new Node("program"); $$->add_child($2); //$$->visit(0); 
+       $$->generate_code();
+       }; 
 
 code: statement code { Node* n = new Node("code"); n->add_child($1); n->add_child($2); $$ = n; }
     | statement { $$ = $1; }
@@ -107,7 +109,7 @@ assignment_statement: VARIABLE ASSIGNMENT expression PERIOD {
 rectangle_statement: RECTANGLE color_literal COMMA expression COMMA expression COMMA expression COMMA expression PERIOD { 
 	$$ = new Node("rectangle");
 	Constant* c = new Constant("color"); 
-  c->set_value($2); 
+	c->set_value($2); 
 	$$->add_child(c); 
 	$$->add_child($4); 
 	$$->add_child($6); 
@@ -184,6 +186,7 @@ note_literal: NOTE { StringConstant* n = new StringConstant("note_literal"); n->
 int main( int argc, char* argv[])
 {
     yyparse();
+    print_program();
 }
 
 void yyerror(const char* msg)
