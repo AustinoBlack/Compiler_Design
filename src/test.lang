@@ -1,4 +1,5 @@
 Hello
+pixel: green, 10, 10.
 rectangle: red,1,1,5,5.
 rectangle: blue, 5,5,5,8.
 Bye
