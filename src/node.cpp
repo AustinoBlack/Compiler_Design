@@ -157,14 +157,14 @@ int Node::logical_and(int left, int right)
       sty_abs(st.address(result));
       return result;
 }
-//TODO: added a color to generate point since our pixel is color, x, y
-void Node::generate_point(int color, int x, int y) const
+void Node::generate_point(/*int color,*/ int x, int y) const
 {
       //TODO: idk if im doing this right but colors are an int between 1 and 16?
-      if(color < 0 || color > 16){
+     /* if(color < 0 || color > 16){
        	 abort("Invalid color value.\n", m_lineno);
       }	 
-      if (x < 0) {
+      i*/
+      if(x < 0) {
          abort("Point with undefined x coordinate.\n", m_lineno);
       }
       int addx = st.address(x);
@@ -229,7 +229,7 @@ void Node::generate_point(int color, int x, int y) const
       sta_indy(0xfe);   //Store at *0xfe
 }
 //TODO: added color to generate rect because our rectangle is color, x, y, width, height
-void Node::generate_rect(int color, int x1, int y1, int w, int h) const
+void Node::generate_rect(/*int color,*/ int x1, int y1, int w, int h) const
 {
    int x = st.temporary();
    int x2 = st.temporary(); 
@@ -291,8 +291,8 @@ void Node::generate_rect(int color, int x1, int y1, int w, int h) const
    int placeholder2 = bytes.size();
    jmp(0);
    //TODO: added color here
-   generate_point(color,x,y1);
-   generate_point(color,x,y2);
+   generate_point(/*color,*/x,y1);
+   generate_point(/*color,*/x,y2);
 
    //End if
    int end_if1 = lt.address(lt.here());
@@ -307,8 +307,8 @@ void Node::generate_rect(int color, int x1, int y1, int w, int h) const
    int placeholder3 = bytes.size();
    jmp(0);
    //TODO: added color here
-   generate_point(color,x1,y);
-   generate_point(color,x2,y);
+   generate_point(/*color,*/x1,y);
+   generate_point(/*color,*/x2,y);
 
    //End if
    int end_if2 = lt.address(lt.here());
@@ -374,6 +374,10 @@ int Node::generate_code() const //TODO pls
       m_children[0]->generate_code();
       rts(); 
    }
+   else if (m_token == "code") {
+	m_children[0]->generate_code();
+	m_children[1]->generate_code();
+   }
    //TODO: We have an identifier token, so keep?
    //TODO: mayhaps edit
    else if (m_token == "identifier") {
@@ -424,6 +428,15 @@ int Node::generate_code() const //TODO pls
          }
          m_children[0]->generate_code(); 
          m_children[1]->generate_code(); 
+   }
+   else if (m_token == "number") {
+         const Constant* child = dynamic_cast<const Constant *>(this);
+	 int result = st.temporary();
+         lda_imm(low(child->value()));
+	 sta_abs(st.address(result));
+         lda_imm(high(child->value()));
+      	 sta_abs(st.address(result)+1);
+	 return result;
    }
    //TODO: We have an assignment token, so keep?
    //TODO: mayhaps edit
@@ -496,27 +509,28 @@ int Node::generate_code() const //TODO pls
       clc(); //Clear carry bit to mean "set position"
       jsr_abs(0xfff0); //Call kernal PLOT function
    }
-   //TODO: I think this is equivalent to our "pixel" token
-   else if (m_token == "point") {
+	 //TODO: Implement "color" we generate code but do not pass it as a param. see line 161.
+   else if (m_token == "pixel") {
          DEBUG("point");
-      if (m_children.size() < 2) {
-         abort("Point requires two coordinates.\n", m_lineno);
+      if (m_children.size() < 3) {
+         abort("Point requires color, x, y.\n", m_lineno);
       }
       int x = m_children[0]->generate_code();
       int x = m_children[1]->generate_code();
       int y = m_children[2]->generate_code();
       this->generate_point(color,x,y);
    }
-   //TODO will need to edit rectangle token to fit our code
-   else if (m_token == "rect") {
+   //TODO: Implement "color" we generate code but do not pass it as a param. see line 228
+   else if (m_token == "rectangle") {
          DEBUG("rect");
-      if (m_children.size() < 4) {
-         abort("Rectangle requires x,y, width, and height.\n", m_lineno);
+      if (m_children.size() < 5) {
+         abort("Rectangle requires color,x,y, width, and height.\n", m_lineno);
       }
-      int x = m_children[0]->generate_code();
-      int y = m_children[1]->generate_code();
-      int w = m_children[2]->generate_code();
-      int h = m_children[3]->generate_code();
+      int color = dynamic_cast<Constant *>(m_children[0])->value();
+      int x = m_children[1]->generate_code();
+      int y = m_children[2]->generate_code();
+      int w = m_children[3]->generate_code();
+      int h = m_children[4]->generate_code();
       generate_rect(x,y,w,h);
    }
    //TODO: Keep this, we have an if
