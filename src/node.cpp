@@ -158,7 +158,7 @@ int Node::logical_and(int left, int right)
       return result;
 }
 
-void Node::generate_point(int x, int y) const
+void Node::generate_point(int x, int y) const //TODO: adda color param
 {
       if (x < 0) {
          abort("Point with undefined x coordinate.\n", m_lineno);
@@ -225,7 +225,7 @@ void Node::generate_point(int x, int y) const
       sta_indy(0xfe);   //Store at *0xfe
 }
 
-void Node::generate_rect(int x1, int y1, int w, int h) const
+void Node::generate_rect(int x1, int y1, int w, int h) const //TODO: adda color param
 {
    int x = st.temporary();
    int x2 = st.temporary(); 
@@ -373,7 +373,6 @@ int Node::generate_code() const //TODO pls
 			m_children[0]->generate_code();
 		  m_children[1]->generate_code();
    }
-   //TODO: Add tokens for Hello and Bye?
 
    //TODO: We have an identifier token, so keep?
    //TODO: mayhaps edit
@@ -506,17 +505,18 @@ int Node::generate_code() const //TODO pls
       clc(); //Clear carry bit to mean "set position"
       jsr_abs(0xfff0); //Call kernal PLOT function
    }
-   //TODO: I think this is equivalent to our "pixel" token
-   else if (m_token == "point") {
+	 //TODO: Implement "color" we generate code but do not pass it as a param. see line 161.
+   else if (m_token == "pixel") {
          DEBUG("point");
-      if (m_children.size() < 2) {
-         abort("Point requires two coordinates.\n", m_lineno);
+      if (m_children.size() < 3) {
+         abort("Point requires color, x, y.\n", m_lineno);
       }
-      int x = m_children[0]->generate_code();
-      int y = m_children[1]->generate_code();
+			int color = dynamic_cast<Constant *>(m_children[0])->value();
+      int x = m_children[1]->generate_code();
+      int y = m_children[2]->generate_code();
       this->generate_point(x,y);
-   }
-   //TODO will need to edit rectangle token to fit our code
+   }	
+	 //TODO: Implement "color" we generate code but do not pass it as a param. see line 228
    else if (m_token == "rectangle") {
          DEBUG("rect");
       if (m_children.size() < 5) {
