@@ -157,10 +157,14 @@ int Node::logical_and(int left, int right)
       sty_abs(st.address(result));
       return result;
 }
-
-void Node::generate_point(int x, int y) const //TODO: adda color param
+void Node::generate_point(/*int color,*/ int x, int y) const
 {
-      if (x < 0) {
+      //TODO: idk if im doing this right but colors are an int between 1 and 16?
+     /* if(color < 0 || color > 16){
+       	 abort("Invalid color value.\n", m_lineno);
+      }	 
+      i*/
+      if(x < 0) {
          abort("Point with undefined x coordinate.\n", m_lineno);
       }
       int addx = st.address(x);
@@ -224,8 +228,8 @@ void Node::generate_point(int x, int y) const //TODO: adda color param
       lda_z(2);         //Load current color
       sta_indy(0xfe);   //Store at *0xfe
 }
-
-void Node::generate_rect(int x1, int y1, int w, int h) const //TODO: adda color param
+//TODO: added color to generate rect because our rectangle is color, x, y, width, height
+void Node::generate_rect(/*int color,*/ int x1, int y1, int w, int h) const
 {
    int x = st.temporary();
    int x2 = st.temporary(); 
@@ -286,8 +290,9 @@ void Node::generate_rect(int x1, int y1, int w, int h) const //TODO: adda color 
    bne(first_if+3);
    int placeholder2 = bytes.size();
    jmp(0);
-   generate_point(x,y1);
-   generate_point(x,y2);
+   //TODO: added color here
+   generate_point(/*color,*/x,y1);
+   generate_point(/*color,*/x,y2);
 
    //End if
    int end_if1 = lt.address(lt.here());
@@ -301,9 +306,9 @@ void Node::generate_rect(int x1, int y1, int w, int h) const //TODO: adda color 
    bne(second_if+3);
    int placeholder3 = bytes.size();
    jmp(0);
-
-   generate_point(x1,y);
-   generate_point(x2,y);
+   //TODO: added color here
+   generate_point(/*color,*/x1,y);
+   generate_point(/*color,*/x2,y);
 
    //End if
    int end_if2 = lt.address(lt.here());
@@ -369,11 +374,10 @@ int Node::generate_code() const //TODO pls
       m_children[0]->generate_code();
       rts(); 
    }
-	 else if (m_token == "code") {
-			m_children[0]->generate_code();
-		  m_children[1]->generate_code();
+   else if (m_token == "code") {
+	m_children[0]->generate_code();
+	m_children[1]->generate_code();
    }
-
    //TODO: We have an identifier token, so keep?
    //TODO: mayhaps edit
    else if (m_token == "identifier") {
@@ -511,12 +515,12 @@ int Node::generate_code() const //TODO pls
       if (m_children.size() < 3) {
          abort("Point requires color, x, y.\n", m_lineno);
       }
-			int color = dynamic_cast<Constant *>(m_children[0])->value();
+      int x = m_children[0]->generate_code();
       int x = m_children[1]->generate_code();
       int y = m_children[2]->generate_code();
-      this->generate_point(x,y);
-   }	
-	 //TODO: Implement "color" we generate code but do not pass it as a param. see line 228
+      this->generate_point(color,x,y);
+   }
+   //TODO: Implement "color" we generate code but do not pass it as a param. see line 228
    else if (m_token == "rectangle") {
          DEBUG("rect");
       if (m_children.size() < 5) {
