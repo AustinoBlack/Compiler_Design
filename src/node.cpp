@@ -515,10 +515,10 @@ int Node::generate_code() const //TODO pls
       if (m_children.size() < 3) {
          abort("Point requires color, x, y.\n", m_lineno);
       }
-      int x = m_children[0]->generate_code();
+      int color = m_children[0]->generate_code();
       int x = m_children[1]->generate_code();
       int y = m_children[2]->generate_code();
-      this->generate_point(color,x,y);
+      this->generate_point(/*color,*/x,y);
    }
    //TODO: Implement "color" we generate code but do not pass it as a param. see line 228
    else if (m_token == "rectangle") {
