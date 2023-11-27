@@ -18,3 +18,6 @@ test:
 	./MeowText < tests/test-pixel-simple.meow > tests/pixel-simple.out
 	./MeowText < tests/test-rectangle-simple.meow > tests/rectangle-simple.out
 	./MeowText < tests/test-background-colors.meow > tests/background-colors.out
+	./MeowText < tests/test-rectangle-colors.meow > tests/rectangle-colors.out
+	./MeowText < tests/test-rectangle-multi.meow > tests/rectangle-multi.out
+	./MeowText < tests/test-music-simple.meow > tests/music-simple.out
