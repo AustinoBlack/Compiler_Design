@@ -1,8 +1,0 @@
-Hello
-	clear.
-	x is 1.
-	background white.
-	pixel: green, 10, 10.
-	pixel: purple, 15, 15.
-	rectangle: black, 12, 12, 5, 5.
-Bye
