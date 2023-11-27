@@ -1,5 +1,6 @@
 Hello
 	clear.
+	x is 1.
 	background white.
 	pixel: green, 10, 10.
 	pixel: purple, 15, 15.
