@@ -41,6 +41,8 @@ extern SymbolTable symboltable;
 "is less or equal to"       {return LORE;}
 "Then."                     {return BEGINSTMT;}
 "Now."                      {return ENDSTMT;}
+"clear"											{return CLEAR;}
+"background"								{return BACKGROUND;}
 black												{return BLACK;}
 white												{return WHITE;}
 red													{return RED;}
