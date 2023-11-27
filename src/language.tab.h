@@ -81,24 +81,25 @@ extern int yydebug;
     ENDSTMT = 282,                 /* ENDSTMT  */
     CLEAR = 283,                   /* CLEAR  */
     BACKGROUND = 284,              /* BACKGROUND  */
-    BLACK = 285,                   /* BLACK  */
-    WHITE = 286,                   /* WHITE  */
-    RED = 287,                     /* RED  */
-    CYAN = 288,                    /* CYAN  */
-    PURPLE = 289,                  /* PURPLE  */
-    GREEN = 290,                   /* GREEN  */
-    BLUE = 291,                    /* BLUE  */
-    YELLOW = 292,                  /* YELLOW  */
-    ORANGE = 293,                  /* ORANGE  */
-    BROWN = 294,                   /* BROWN  */
-    LTRED = 295,                   /* LTRED  */
-    DKGREY = 296,                  /* DKGREY  */
-    GREY = 297,                    /* GREY  */
-    LTGREEN = 298,                 /* LTGREEN  */
-    LTBLUE = 299,                  /* LTBLUE  */
-    LTGREY = 300,                  /* LTGREY  */
-    PERIOD = 301,                  /* PERIOD  */
-    COMMA = 302                    /* COMMA  */
+    INPUT = 285,                   /* INPUT  */
+    BLACK = 286,                   /* BLACK  */
+    WHITE = 287,                   /* WHITE  */
+    RED = 288,                     /* RED  */
+    CYAN = 289,                    /* CYAN  */
+    PURPLE = 290,                  /* PURPLE  */
+    GREEN = 291,                   /* GREEN  */
+    BLUE = 292,                    /* BLUE  */
+    YELLOW = 293,                  /* YELLOW  */
+    ORANGE = 294,                  /* ORANGE  */
+    BROWN = 295,                   /* BROWN  */
+    LTRED = 296,                   /* LTRED  */
+    DKGREY = 297,                  /* DKGREY  */
+    GREY = 298,                    /* GREY  */
+    LTGREEN = 299,                 /* LTGREEN  */
+    LTBLUE = 300,                  /* LTBLUE  */
+    LTGREY = 301,                  /* LTGREY  */
+    PERIOD = 302,                  /* PERIOD  */
+    COMMA = 303                    /* COMMA  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -113,7 +114,7 @@ union YYSTYPE
     char strval[256];
 		class Node* node;
 
-#line 117 "language.tab.h"
+#line 118 "language.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

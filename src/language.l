@@ -43,6 +43,7 @@ extern SymbolTable symboltable;
 "Now."                      {return ENDSTMT;}
 "clear"											{return CLEAR;}
 "background"								{return BACKGROUND;}
+"input"											{return INPUT;}
 black												{return BLACK;}
 white												{return WHITE;}
 red													{return RED;}
