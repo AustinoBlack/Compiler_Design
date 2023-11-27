@@ -1,0 +1,34 @@
+Hello
+	clear.
+	background black.
+	clear.
+	background red.
+	clear.
+	background cyan.
+	clear.
+	background purple.
+	clear.
+	background green.
+	clear.
+	background blue.
+	clear.
+	background yellow.
+	clear.
+	background orange.
+	clear.
+	background brown.
+	clear.
+	background ltred.
+	clear.
+	background dkred.
+	clear.
+	background grey.
+	clear.
+	background ltgreen.
+	clear.
+	background ltgrey.
+	clear.
+	background ltblue.
+	clear.
+	background white.
+Bye

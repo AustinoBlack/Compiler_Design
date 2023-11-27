@@ -1,19 +1,19 @@
 Hello
 	clear.
 	pixel: white, 0, 5.
-	pixel: red, 0, 6.
-	pixel: cyan, 0, 7.
-	pixel: purple, 0, 8.
-	pixel: green, 0, 9.
-	pixel: blue, 0, 10.
-	pixel: yellow, 0, 11.
-	pixel: orange, 0, 12.
-	pixel: brown, 0, 13.
-	pixel: ltred, 0, 14.
-	pixel: dkred, 0, 15.
-	pixel: grey, 0, 16.
-	pixel: ltgreen, 0, 17.
-	pixel: ltblue, 0, 18.
-	pixel: ltgrey, 0, 19.
-	pixel: black, 0, 20.
+	pixel: red, 1, 5.
+	pixel: cyan, 2, 5.
+	pixel: purple, 3, 5.
+	pixel: green, 4, 5.
+	pixel: blue, 5, 5.
+	pixel: yellow, 6, 5.
+	pixel: orange, 7, 5.
+	pixel: brown, 8, 5.
+	pixel: ltred, 9, 5.
+	pixel: dkred, 10, 5.
+	pixel: grey, 11, 5.
+	pixel: ltgreen, 12, 5.
+	pixel: ltblue, 13, 5.
+	pixel: ltgrey, 14, 5.
+	pixel: black, 15, 5.
 Bye
