@@ -21,4 +21,7 @@ test:
 	./MeowText < tests/test-rectangle-colors.meow > tests/rectangle-colors.out
 	./MeowText < tests/test-rectangle-multi.meow > tests/rectangle-multi.out
 	./MeowText < tests/test-loops-and-if.meow > tests/loops-ifs.out
+	./MeowText < tests/test-all-maths.meow > tests/all-maths.out
+	./MeowText < tests/test-pixel-amount.meow > tests/pixel-amount.out
+	./MeowText < tests/demo.meow > tests/demo.out
 	./MeowText < tests/test-music-simple.meow > tests/music-simple.out
