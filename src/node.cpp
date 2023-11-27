@@ -157,13 +157,8 @@ int Node::logical_and(int left, int right)
       sty_abs(st.address(result));
       return result;
 }
-void Node::generate_point(/*int color,*/ int x, int y) const
+void Node::generate_point(int x, int y) const
 {
-      //TODO: idk if im doing this right but colors are an int between 1 and 16?
-     /* if(color < 0 || color > 16){
-       	 abort("Invalid color value.\n", m_lineno);
-      }	 
-      i*/
       if(x < 0) {
          abort("Point with undefined x coordinate.\n", m_lineno);
       }
@@ -357,6 +352,55 @@ string Node::token() const
 void Node::set_token(const string& name)
 {
    m_token = name;
+}
+
+void Node::setup_sound()
+{
+        int base = 0xd400;
+        const int volume = 15;
+        const int attack=12;
+        const int decay=1;
+        const int sustain=4;
+        const int release=0;
+        unsigned char ad = attack + (decay << 4);
+        unsigned char sr = sustain + (release << 4);
+
+        lda_imm(ad);
+        sta_abs(base+5);
+        lda_imm(sr);
+        sta_abs(base+6);
+
+        lda_imm(volume);
+        sta_abs(base+24);
+}
+
+void Node::play_sound(int pitch, int duration)
+{
+        int sound_base = 0xd400;
+
+        pitch = int(pitch/0.06097);
+
+        int high_byte = high(pitch);
+        int low_byte = low(pitch);
+
+        lda_imm(low_byte);
+        sta_abs(sound_base);
+        lda_imm(high_byte);
+        sta_abs(sound_base+1);
+
+        lda_imm(33);
+        sta_abs(sound_base+4);
+
+        clc();
+        lda_imm(duration);
+        adc_z(0xa2);
+
+        int top = lt.address(lt.here()) - 2;
+        cmp_z(0xa2);
+        bne(top);
+
+        lda_imm(32);
+        sta_abs(sound_base+4);
 }
 
 int Node::generate_code() const //TODO pls
@@ -723,6 +767,29 @@ int Node::generate_code() const //TODO pls
    else if (m_token == "clear") {
       lda_imm(147); //Load code for CLR/HOME (0x93) into accumulator
       jsr_abs(0xffd2); //Call kernal CHROUT function to print to screen
+   }
+   else if(m_token == "note_literal"){
+      DEBUG("constant");
+      const Constant* cstnt = dynamic_cast<const Constant *>(this);
+      if (cstnt) {
+         int t = st.temporary();
+         int value = cstnt->value();
+
+         lda_imm(low(value));
+         int addy = st.address(t);
+         if (addy < 0) {
+            abort("Constant with no address\n", m_lineno);
+         }
+         sta_abs(addy);
+         lda_imm(high(value));
+         sta_abs(addy+1);
+         return t;
+      }
+      else {
+         abort("Constant with no value1\n", m_lineno);
+      }
+
+
    }
    else {
       abort(string("Unimplemented token: ") + m_token, m_lineno);

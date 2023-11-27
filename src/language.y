@@ -17,8 +17,9 @@ extern SymbolTable symboltable;
 %union {
     int intval;
     char strval[256];
-		class Node* node;
+    class Node* node;
 }
+
 %token<strval> VARIABLE
 %token<intval> NUMBER
 %token<strval> NOTE
@@ -84,15 +85,14 @@ code: statement code { Node* n = new Node("code"); n->add_child($1); n->add_chil
     ;
 
 statement: clear_statement { $$ = $1; }
-				 | background_statement { $$ = $1; }
-				 //| input_statement{ $$ = $1; }
-				 | loop_statement { $$ = $1; }
-         | if_statement{ $$ = $1; }
-         | assignment_statement { $$ = $1; }
-         | rectangle_statement { $$ = $1; }
-         | pixel_statement { $$ = $1; }
-         | music_statement { $$ = $1; }
-         ;
+	   | background_statement { $$ = $1; }
+	   | loop_statement { $$ = $1; }
+           | if_statement{ $$ = $1; }
+           | assignment_statement { $$ = $1; }
+           | rectangle_statement { $$ = $1; }
+           | pixel_statement { $$ = $1; }
+           | music_statement { $$ = $1; }
+           ;
 
 clear_statement: CLEAR PERIOD {
 	$$ = new Node("clear");
@@ -150,45 +150,46 @@ pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD {
 };
 
 music_statement: MUSIC note_literal PERIOD {
-	$$ = new Node("music"); 
-	$$->add_child($2); 
+//	$$ = new Node("music"); 
+//	$$->add_child($2); 
+	$$ = $2;
 };
 
 expression: factor { $$ = $1; } 
-					| expression PLUS factor { Node* n = new Node("plus"); n->add_child($1); n->add_child($3); $$=n; } 
-					| expression MINUS factor { Node* n = new Node("minus"); n->add_child($1); n->add_child($3); $$=n; }
-          ;
+	   | expression PLUS factor { Node* n = new Node("plus"); n->add_child($1); n->add_child($3); $$=n; } 
+	   | expression MINUS factor { Node* n = new Node("minus"); n->add_child($1); n->add_child($3); $$=n; }
+           ;
 
 factor: term { $$ = $1; } 
- 			| factor TIMES term { Node* n = new Node("times"); n->add_child($1); n->add_child($3); $$=n; } 
-			| factor DIVIDE term { Node* n = new Node("divide"); n->add_child($1); n->add_child($3); $$=n; }
-      ; 
+ 	     | factor TIMES term { Node* n = new Node("times"); n->add_child($1); n->add_child($3); $$=n; } 
+	     | factor DIVIDE term { Node* n = new Node("divide"); n->add_child($1); n->add_child($3); $$=n; }
+      	     ; 
 
 term: VARIABLE { Identifier* id = new Identifier("variable"); id->set_value($1); $$ = id;  } 
 		| NUMBER { Constant* n = new Constant( "number" ); n->set_value($1); $$ = n; }
-    ;
+    		;
 
 compound_condition: condition {$$ = $1; } 
-									| condition AND condition {Node* n = new Node("and"); n->add_child($1), n->add_child($3); $$=n;} 
-									| condition OR condition {Node* n = new Node("or"); n->add_child($1), n->add_child($3); $$=n;}
-                  ; 
+			      | condition AND condition {Node* n = new Node("and"); n->add_child($1), n->add_child($3); $$=n;} 
+			      | condition OR condition {Node* n = new Node("or"); n->add_child($1), n->add_child($3); $$=n;}
+                  	      ; 
 
 condition: expression comparison expression { Node* n = new Node("condition"); n->add_child($1); n->add_child($2); n->add_child($3); $$=n; };
 
 comparison : EQUALS { $$ = new Node("equals"); }
-					 | GT { $$ = new Node("gt"); }
-					 | LT { $$ = new Node("lt"); }
-					 | GORE { $$ = new Node("gore"); }
-					 | LORE { $$ = new Node("lore"); }
-           ;
+		    | GT { $$ = new Node("gt"); }
+		    | LT { $$ = new Node("lt"); }
+		    | GORE { $$ = new Node("gore"); }
+		    | LORE { $$ = new Node("lore"); }
+	            ;
 
 //number_literal: NUMBER { Constant* n = new Constant("number_literal"); n->set_value($1); $$ = n; };
 
 color_literal: BLACK { $$ = 0; }
-						 | WHITE { $$ = 1; } 
-						 | RED { $$ = 2; } 
+	     | WHITE { $$ = 1; } 
+	     | RED { $$ = 2; } 
              | CYAN { $$ = 3; } 
- 						 | PURPLE { $$ = 4; } 
+ 	     | PURPLE { $$ = 4; } 
              | GREEN { $$ = 5; } 
              | BLUE { $$ = 6; } 
              | YELLOW { $$ = 7; } 

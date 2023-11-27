@@ -1145,7 +1145,7 @@ YY_RULE_SETUP
 case 47:
 YY_RULE_SETUP
 #line 68 "language.l"
-{	strncpy(yylval.strval, yytext, 256); return VARIABLE;}
+{ strncpy(yylval.strval, yytext, 256); return VARIABLE;}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
