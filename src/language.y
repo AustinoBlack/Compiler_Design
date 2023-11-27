@@ -116,7 +116,7 @@ if_statement: IFHEAD compound_condition BEGINSTMT code ENDSTMT {
 
 assignment_statement: VARIABLE ASSIGNMENT expression PERIOD {
 	Node* n = new Node("assignment");
-	Identifier* id = new Identifier("number_variable");
+	Identifier* id = new Identifier("variable");
 	id->set_value(string($1));
 	n->add_child(id);
 	n->add_child($3);

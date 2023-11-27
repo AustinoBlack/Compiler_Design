@@ -1580,7 +1580,7 @@ yyreduce:
 #line 117 "language.y"
                                                             {
 	Node* n = new Node("assignment");
-	Identifier* id = new Identifier("number_variable");
+	Identifier* id = new Identifier("variable");
 	id->set_value(string((yyvsp[-3].strval)));
 	n->add_child(id);
 	n->add_child((yyvsp[-1].node));

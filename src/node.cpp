@@ -380,7 +380,7 @@ int Node::generate_code() const //TODO pls
    }
    //TODO: We have an identifier token, so keep?
    //TODO: mayhaps edit
-   else if (m_token == "identifier") {
+   else if (m_token == "variable") {
       DEBUG("identifier");
       const Identifier* id = dynamic_cast<const Identifier *>(this);
       if (!id) {
@@ -398,7 +398,7 @@ int Node::generate_code() const //TODO pls
    }
    //TODO: We have a constant token, so keep?
    //TODO: mayhaps edit
-   else if (m_token == "constant") {
+   else if (m_token == "number") {
       DEBUG("constant");
       const Constant* cstnt = dynamic_cast<const Constant *>(this);
       if (cstnt) {
@@ -449,14 +449,14 @@ int Node::generate_code() const //TODO pls
       if (variable < 0) {
          abort("Assigning to identifier with no symbol.\n", m_lineno);
       }
-      if (m_children[1]->m_token == "constant") {
+      if (m_children[1]->m_token == "number") {
          const Constant* child = dynamic_cast<const Constant *>(m_children[1]);
          lda_imm(low(child->value()));
          sta_abs(st.address(variable));
          lda_imm(high(child->value()));
          sta_abs(st.address(variable)+1);
       }
-      else if (m_children[1]->m_token == "identifier") {
+      else if (m_children[1]->m_token == "variable") {
          const Identifier* child = dynamic_cast<const Identifier*>(m_children[1]);
          int id = st.id_of(child->value());
          if (id < 0) {
