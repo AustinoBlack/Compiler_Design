@@ -1,0 +1,9 @@
+Hello
+	i is 0.
+	as long as: i is less than 5
+	Then.
+		clear.
+		pixel: red, i plus 1, i plus 1.
+		i is i plus 1.
+	Now.
+Bye
