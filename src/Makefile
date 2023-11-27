@@ -13,4 +13,4 @@ clean:
 	rm -f lex.yy.c language.tab.c MeowText
 
 test:
-	./MeowText < ../tests/test-simple.lang
+	./MeowText < tests/test-clear-simple.meow > tests/clear-simple.out
