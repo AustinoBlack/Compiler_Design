@@ -1,0 +1,19 @@
+Hello
+	clear.
+	pixel: white, 0, 5.
+	pixel: red, 0, 6.
+	pixel: cyan, 0, 7.
+	pixel: purple, 0, 8.
+	pixel: green, 0, 9.
+	pixel: blue, 0, 10.
+	pixel: yellow, 0, 11.
+	pixel: orange, 0, 12.
+	pixel: brown, 0, 13.
+	pixel: ltred, 0, 14.
+	pixel: dkred, 0, 15.
+	pixel: grey, 0, 16.
+	pixel: ltgreen, 0, 17.
+	pixel: ltblue, 0, 18.
+	pixel: ltgrey, 0, 19.
+	pixel: black, 0, 20.
+Bye

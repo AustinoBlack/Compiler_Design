@@ -14,3 +14,6 @@ clean:
 
 test:
 	./MeowText < tests/test-clear-simple.meow > tests/clear-simple.out
+	./MeowText < tests/test-pixel-colors.meow > tests/pixel-colors.out
+	./MeowText < tests/test-pixel-simple.meow > tests/pixel-simple.out
+	./MeowText < tests/test-rectangle-simple.meow > tests/rectangle-simple.out
