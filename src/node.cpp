@@ -554,7 +554,7 @@ int Node::generate_code() const //TODO pls
       bytes[backpatch+2] = high(end);
    }
    //TODO: we have a while loop i think so keep this
-   else if (m_token == "while") {
+   else if (m_token == "loop") {
       DEBUG("while");
       if (m_children.size() < 2) {
          abort("If statement requires both condition and body\n", m_lineno);
@@ -613,22 +613,22 @@ int Node::generate_code() const //TODO pls
       int right_addy = st.address(right);
 
       int top;
-      if (m_children[1]->m_token == "LT") {
+      if (m_children[1]->m_token == "lt") {
          return less(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "GT") {
+      else if (m_children[1]->m_token == "gt") {
          return greater(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "EQ") {
+      else if (m_children[1]->m_token == "equals") {
          return eq(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "NE") {
+      else if (m_children[1]->m_token == "NE") { //impelment?
          return ne(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "LTE") {
+      else if (m_children[1]->m_token == "lore") {
          return less_equal(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "GTE") {
+      else if (m_children[1]->m_token == "gore") {
          return greater_equal(left_addy, right_addy);
       }
       abort(string("Not implemented: ") + m_children[1]->m_token, m_lineno);
