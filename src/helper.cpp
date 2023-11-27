@@ -111,7 +111,6 @@ void print_program()
 {
    printf("\n"); //Start with a blank line to separate debugging output
    //Read and poke each byte of the program into memory at address $C000
-   printf("5 print \"{clr}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}{down}\"\n");
    printf("10 for i = 0 to %ld\n", bytes.size()-1);
    printf("20 read b\n");
    printf("30 poke 49152+i, b\n");
