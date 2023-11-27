@@ -139,42 +139,46 @@ enum yysymbol_kind_t
   YYSYMBOL_LORE = 25,                      /* LORE  */
   YYSYMBOL_BEGINSTMT = 26,                 /* BEGINSTMT  */
   YYSYMBOL_ENDSTMT = 27,                   /* ENDSTMT  */
-  YYSYMBOL_BLACK = 28,                     /* BLACK  */
-  YYSYMBOL_WHITE = 29,                     /* WHITE  */
-  YYSYMBOL_RED = 30,                       /* RED  */
-  YYSYMBOL_CYAN = 31,                      /* CYAN  */
-  YYSYMBOL_PURPLE = 32,                    /* PURPLE  */
-  YYSYMBOL_GREEN = 33,                     /* GREEN  */
-  YYSYMBOL_BLUE = 34,                      /* BLUE  */
-  YYSYMBOL_YELLOW = 35,                    /* YELLOW  */
-  YYSYMBOL_ORANGE = 36,                    /* ORANGE  */
-  YYSYMBOL_BROWN = 37,                     /* BROWN  */
-  YYSYMBOL_LTRED = 38,                     /* LTRED  */
-  YYSYMBOL_DKGREY = 39,                    /* DKGREY  */
-  YYSYMBOL_GREY = 40,                      /* GREY  */
-  YYSYMBOL_LTGREEN = 41,                   /* LTGREEN  */
-  YYSYMBOL_LTBLUE = 42,                    /* LTBLUE  */
-  YYSYMBOL_LTGREY = 43,                    /* LTGREY  */
-  YYSYMBOL_PERIOD = 44,                    /* PERIOD  */
-  YYSYMBOL_COMMA = 45,                     /* COMMA  */
-  YYSYMBOL_YYACCEPT = 46,                  /* $accept  */
-  YYSYMBOL_program = 47,                   /* program  */
-  YYSYMBOL_code = 48,                      /* code  */
-  YYSYMBOL_statement = 49,                 /* statement  */
-  YYSYMBOL_loop_statement = 50,            /* loop_statement  */
-  YYSYMBOL_if_statement = 51,              /* if_statement  */
-  YYSYMBOL_assignment_statement = 52,      /* assignment_statement  */
-  YYSYMBOL_rectangle_statement = 53,       /* rectangle_statement  */
-  YYSYMBOL_pixel_statement = 54,           /* pixel_statement  */
-  YYSYMBOL_music_statement = 55,           /* music_statement  */
-  YYSYMBOL_expression = 56,                /* expression  */
-  YYSYMBOL_factor = 57,                    /* factor  */
-  YYSYMBOL_term = 58,                      /* term  */
-  YYSYMBOL_compound_condition = 59,        /* compound_condition  */
-  YYSYMBOL_condition = 60,                 /* condition  */
-  YYSYMBOL_comparison = 61,                /* comparison  */
-  YYSYMBOL_color_literal = 62,             /* color_literal  */
-  YYSYMBOL_note_literal = 63               /* note_literal  */
+  YYSYMBOL_CLEAR = 28,                     /* CLEAR  */
+  YYSYMBOL_BACKGROUND = 29,                /* BACKGROUND  */
+  YYSYMBOL_BLACK = 30,                     /* BLACK  */
+  YYSYMBOL_WHITE = 31,                     /* WHITE  */
+  YYSYMBOL_RED = 32,                       /* RED  */
+  YYSYMBOL_CYAN = 33,                      /* CYAN  */
+  YYSYMBOL_PURPLE = 34,                    /* PURPLE  */
+  YYSYMBOL_GREEN = 35,                     /* GREEN  */
+  YYSYMBOL_BLUE = 36,                      /* BLUE  */
+  YYSYMBOL_YELLOW = 37,                    /* YELLOW  */
+  YYSYMBOL_ORANGE = 38,                    /* ORANGE  */
+  YYSYMBOL_BROWN = 39,                     /* BROWN  */
+  YYSYMBOL_LTRED = 40,                     /* LTRED  */
+  YYSYMBOL_DKGREY = 41,                    /* DKGREY  */
+  YYSYMBOL_GREY = 42,                      /* GREY  */
+  YYSYMBOL_LTGREEN = 43,                   /* LTGREEN  */
+  YYSYMBOL_LTBLUE = 44,                    /* LTBLUE  */
+  YYSYMBOL_LTGREY = 45,                    /* LTGREY  */
+  YYSYMBOL_PERIOD = 46,                    /* PERIOD  */
+  YYSYMBOL_COMMA = 47,                     /* COMMA  */
+  YYSYMBOL_YYACCEPT = 48,                  /* $accept  */
+  YYSYMBOL_program = 49,                   /* program  */
+  YYSYMBOL_code = 50,                      /* code  */
+  YYSYMBOL_statement = 51,                 /* statement  */
+  YYSYMBOL_clear_statement = 52,           /* clear_statement  */
+  YYSYMBOL_background_statement = 53,      /* background_statement  */
+  YYSYMBOL_loop_statement = 54,            /* loop_statement  */
+  YYSYMBOL_if_statement = 55,              /* if_statement  */
+  YYSYMBOL_assignment_statement = 56,      /* assignment_statement  */
+  YYSYMBOL_rectangle_statement = 57,       /* rectangle_statement  */
+  YYSYMBOL_pixel_statement = 58,           /* pixel_statement  */
+  YYSYMBOL_music_statement = 59,           /* music_statement  */
+  YYSYMBOL_expression = 60,                /* expression  */
+  YYSYMBOL_factor = 61,                    /* factor  */
+  YYSYMBOL_term = 62,                      /* term  */
+  YYSYMBOL_compound_condition = 63,        /* compound_condition  */
+  YYSYMBOL_condition = 64,                 /* condition  */
+  YYSYMBOL_comparison = 65,                /* comparison  */
+  YYSYMBOL_color_literal = 66,             /* color_literal  */
+  YYSYMBOL_note_literal = 67               /* note_literal  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -500,21 +504,21 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  17
+#define YYFINAL  21
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   88
+#define YYLAST   93
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  46
+#define YYNTOKENS  48
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  18
+#define YYNNTS  20
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  50
+#define YYNRULES  54
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  91
+#define YYNSTATES  98
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   300
+#define YYMAXUTOK   302
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -558,19 +562,19 @@ static const yytype_int8 yytranslate[] =
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45
+      45,    46,    47
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    72,    72,    76,    77,    80,    81,    82,    83,    84,
-      85,    88,    94,   100,   109,   120,   129,   134,   135,   136,
-     139,   140,   141,   144,   145,   148,   149,   150,   153,   155,
-     156,   157,   158,   159,   164,   165,   166,   167,   168,   169,
-     170,   171,   172,   173,   174,   175,   176,   177,   178,   179,
-     182
+       0,    74,    74,    81,    82,    85,    86,    87,    88,    89,
+      90,    91,    92,    95,    99,   105,   111,   117,   126,   137,
+     146,   151,   152,   153,   156,   157,   158,   161,   162,   165,
+     166,   167,   170,   172,   173,   174,   175,   176,   181,   182,
+     183,   184,   185,   186,   187,   188,   189,   190,   191,   192,
+     193,   194,   195,   196,   199
 };
 #endif
 
@@ -590,13 +594,14 @@ static const char *const yytname[] =
   "NOTE", "PRGMBEGIN", "PRGMEND", "LOOPHEAD", "IFHEAD", "RECTANGLE",
   "PIXEL", "MUSIC", "ELSE", "ASSIGNMENT", "EQUALS", "PLUS", "MINUS",
   "TIMES", "DIVIDE", "AND", "OR", "GT", "LT", "GORE", "LORE", "BEGINSTMT",
-  "ENDSTMT", "BLACK", "WHITE", "RED", "CYAN", "PURPLE", "GREEN", "BLUE",
-  "YELLOW", "ORANGE", "BROWN", "LTRED", "DKGREY", "GREY", "LTGREEN",
-  "LTBLUE", "LTGREY", "PERIOD", "COMMA", "$accept", "program", "code",
-  "statement", "loop_statement", "if_statement", "assignment_statement",
-  "rectangle_statement", "pixel_statement", "music_statement",
-  "expression", "factor", "term", "compound_condition", "condition",
-  "comparison", "color_literal", "note_literal", YY_NULLPTR
+  "ENDSTMT", "CLEAR", "BACKGROUND", "BLACK", "WHITE", "RED", "CYAN",
+  "PURPLE", "GREEN", "BLUE", "YELLOW", "ORANGE", "BROWN", "LTRED",
+  "DKGREY", "GREY", "LTGREEN", "LTBLUE", "LTGREY", "PERIOD", "COMMA",
+  "$accept", "program", "code", "statement", "clear_statement",
+  "background_statement", "loop_statement", "if_statement",
+  "assignment_statement", "rectangle_statement", "pixel_statement",
+  "music_statement", "expression", "factor", "term", "compound_condition",
+  "condition", "comparison", "color_literal", "note_literal", YY_NULLPTR
 };
 
 static const char *
@@ -606,7 +611,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-19)
+#define YYPACT_NINF (-23)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -620,16 +625,16 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      26,    47,    34,    22,    16,    16,    43,    43,    36,    45,
-      47,   -19,   -19,   -19,   -19,   -19,   -19,   -19,    16,   -19,
-     -19,     1,     3,   -19,    17,     7,    27,   -19,   -19,   -19,
-     -19,   -19,   -19,   -19,   -19,   -19,   -19,   -19,   -19,   -19,
-     -19,   -19,   -19,    20,    21,   -19,    18,   -19,   -19,    -6,
-     -19,    16,    16,   -19,   -19,   -19,   -19,    16,    16,    16,
-      47,    16,    16,    47,    16,    16,   -19,   -19,     3,     3,
-      13,   -19,   -19,    41,   -19,   -19,    42,   -14,   -12,   -19,
-     -19,    16,    16,   -10,    -4,    16,   -19,    -8,    16,    -2,
-     -19
+      26,    17,    34,    22,    14,    14,    44,    44,    33,    -3,
+      44,    40,    17,   -23,   -23,   -23,   -23,   -23,   -23,   -23,
+     -23,   -23,    14,   -23,   -23,    37,     3,   -23,    30,    10,
+      31,   -23,   -23,   -23,   -23,   -23,   -23,   -23,   -23,   -23,
+     -23,   -23,   -23,   -23,   -23,   -23,   -23,    18,    24,   -23,
+      45,   -23,    46,   -23,   -23,    -6,   -23,    14,    14,   -23,
+     -23,   -23,   -23,    14,    14,    14,    17,    14,    14,    17,
+      14,    14,   -23,   -23,   -23,     3,     3,     7,   -23,   -23,
+      63,   -23,   -23,    66,   -14,   -12,   -23,   -23,    14,    14,
+     -10,    -4,    14,   -23,    -8,    14,    -2,   -23
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -638,29 +643,29 @@ static const yytype_int8 yypact[] =
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
-       4,     5,     6,     7,     8,     9,    10,     1,     0,    23,
-      24,     0,    17,    20,     0,    25,     0,    34,    35,    36,
-      37,    38,    39,    40,    41,    42,    43,    44,    45,    46,
-      47,    48,    49,     0,     0,    50,     0,     2,     3,     0,
-      29,     0,     0,    30,    31,    32,    33,     0,     0,     0,
-       0,     0,     0,     0,     0,     0,    16,    13,    18,    19,
-      28,    21,    22,     0,    26,    27,     0,     0,     0,    11,
-      12,     0,     0,     0,     0,     0,    15,     0,     0,     0,
-      14
+       0,     0,     4,     5,     6,     7,     8,     9,    10,    11,
+      12,     1,     0,    27,    28,     0,    21,    24,     0,    29,
+       0,    38,    39,    40,    41,    42,    43,    44,    45,    46,
+      47,    48,    49,    50,    51,    52,    53,     0,     0,    54,
+       0,    13,     0,     2,     3,     0,    33,     0,     0,    34,
+      35,    36,    37,     0,     0,     0,     0,     0,     0,     0,
+       0,     0,    20,    14,    17,    22,    23,    32,    25,    26,
+       0,    30,    31,     0,     0,     0,    15,    16,     0,     0,
+       0,     0,     0,    19,     0,     0,     0,    18
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -19,   -19,    -9,   -19,   -19,   -19,   -19,   -19,   -19,   -19,
-     -18,    -7,     2,    82,   -13,   -19,    81,   -19
+     -23,   -23,   -11,   -23,   -23,   -23,   -23,   -23,   -23,   -23,
+     -23,   -23,   -22,    -7,    -1,    67,     1,   -23,     9,   -23
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     2,     9,    10,    11,    12,    13,    14,    15,    16,
-      21,    22,    23,    24,    25,    57,    43,    46
+       0,     2,    11,    12,    13,    14,    15,    16,    17,    18,
+      19,    20,    25,    26,    27,    28,    29,    63,    47,    50
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -668,66 +673,68 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-      49,    48,    51,    52,    51,    52,    51,    52,    51,    52,
-      51,    52,    51,    52,    51,    52,    50,    51,    52,    19,
-      20,    58,    59,    53,    54,    55,    56,    61,    62,    51,
-      52,    81,     1,    82,    17,    85,    18,    88,    67,    70,
-      86,    45,    90,    60,    68,    69,    77,    78,    74,    75,
-       3,    73,    47,    63,    76,     4,     5,     6,     7,     8,
-      71,    72,    66,    83,    84,    64,    65,    87,    79,    80,
-      89,    27,    28,    29,    30,    31,    32,    33,    34,    35,
-      36,    37,    38,    39,    40,    41,    42,    26,    44
+      55,    54,    57,    58,    57,    58,    57,    58,    57,    58,
+      57,    58,    57,    58,    57,    58,    48,    23,    24,    52,
+       3,    64,    65,    57,    58,     4,     5,     6,     7,     8,
+      67,    68,     1,    88,    21,    89,    22,    92,    49,    95,
+      74,    77,    93,    51,    97,     9,    10,    53,    84,    85,
+      75,    76,    56,    57,    58,    80,    66,    69,    83,    59,
+      60,    61,    62,    78,    79,    70,    90,    91,    81,    82,
+      94,    71,    30,    96,    31,    32,    33,    34,    35,    36,
+      37,    38,    39,    40,    41,    42,    43,    44,    45,    46,
+      86,    72,    73,    87
 };
 
 static const yytype_int8 yycheck[] =
 {
-      18,    10,    16,    17,    16,    17,    16,    17,    16,    17,
-      16,    17,    16,    17,    16,    17,    15,    16,    17,     3,
-       4,    18,    19,    22,    23,    24,    25,    20,    21,    16,
-      17,    45,     6,    45,     0,    45,    14,    45,    44,    57,
-      44,     5,    44,    26,    51,    52,    64,    65,    61,    62,
-       3,    60,     7,    26,    63,     8,     9,    10,    11,    12,
-      58,    59,    44,    81,    82,    45,    45,    85,    27,    27,
-      88,    28,    29,    30,    31,    32,    33,    34,    35,    36,
-      37,    38,    39,    40,    41,    42,    43,     5,     7
+      22,    12,    16,    17,    16,    17,    16,    17,    16,    17,
+      16,    17,    16,    17,    16,    17,     7,     3,     4,    10,
+       3,    18,    19,    16,    17,     8,     9,    10,    11,    12,
+      20,    21,     6,    47,     0,    47,    14,    47,     5,    47,
+      46,    63,    46,    46,    46,    28,    29,     7,    70,    71,
+      57,    58,    15,    16,    17,    66,    26,    26,    69,    22,
+      23,    24,    25,    64,    65,    47,    88,    89,    67,    68,
+      92,    47,     5,    95,    30,    31,    32,    33,    34,    35,
+      36,    37,    38,    39,    40,    41,    42,    43,    44,    45,
+      27,    46,    46,    27
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     6,    47,     3,     8,     9,    10,    11,    12,    48,
-      49,    50,    51,    52,    53,    54,    55,     0,    14,     3,
-       4,    56,    57,    58,    59,    60,    59,    28,    29,    30,
-      31,    32,    33,    34,    35,    36,    37,    38,    39,    40,
-      41,    42,    43,    62,    62,     5,    63,     7,    48,    56,
-      15,    16,    17,    22,    23,    24,    25,    61,    18,    19,
-      26,    20,    21,    26,    45,    45,    44,    44,    57,    57,
-      56,    58,    58,    48,    60,    60,    48,    56,    56,    27,
-      27,    45,    45,    56,    56,    45,    44,    56,    45,    56,
-      44
+       0,     6,    49,     3,     8,     9,    10,    11,    12,    28,
+      29,    50,    51,    52,    53,    54,    55,    56,    57,    58,
+      59,     0,    14,     3,     4,    60,    61,    62,    63,    64,
+      63,    30,    31,    32,    33,    34,    35,    36,    37,    38,
+      39,    40,    41,    42,    43,    44,    45,    66,    66,     5,
+      67,    46,    66,     7,    50,    60,    15,    16,    17,    22,
+      23,    24,    25,    65,    18,    19,    26,    20,    21,    26,
+      47,    47,    46,    46,    46,    61,    61,    60,    62,    62,
+      50,    64,    64,    50,    60,    60,    27,    27,    47,    47,
+      60,    60,    47,    46,    60,    47,    60,    46
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    46,    47,    48,    48,    49,    49,    49,    49,    49,
-      49,    50,    51,    52,    53,    54,    55,    56,    56,    56,
-      57,    57,    57,    58,    58,    59,    59,    59,    60,    61,
-      61,    61,    61,    61,    62,    62,    62,    62,    62,    62,
-      62,    62,    62,    62,    62,    62,    62,    62,    62,    62,
-      63
+       0,    48,    49,    50,    50,    51,    51,    51,    51,    51,
+      51,    51,    51,    52,    53,    54,    55,    56,    57,    58,
+      59,    60,    60,    60,    61,    61,    61,    62,    62,    63,
+      63,    63,    64,    65,    65,    65,    65,    65,    66,    66,
+      66,    66,    66,    66,    66,    66,    66,    66,    66,    66,
+      66,    66,    66,    66,    67
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     3,     2,     1,     1,     1,     1,     1,     1,
-       1,     5,     5,     4,    11,     7,     3,     1,     3,     3,
-       1,     3,     3,     1,     1,     1,     3,     3,     3,     1,
+       1,     1,     1,     2,     3,     5,     5,     4,    11,     7,
+       3,     1,     3,     3,     1,     3,     3,     1,     1,     1,
+       3,     3,     3,     1,     1,     1,     1,     1,     1,     1,
        1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1,     1,     1,     1,     1,     1,     1,     1,     1,     1,
-       1
+       1,     1,     1,     1,     1
 };
 
 
@@ -1461,83 +1468,116 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: PRGMBEGIN code PRGMEND  */
-#line 72 "language.y"
-                                { (yyval.node) = new Node("program"); (yyval.node)->add_child((yyvsp[-1].node)); //$$->visit(0); 
-       (yyval.node)->generate_code();
-       }
-#line 1469 "language.tab.c"
+#line 74 "language.y"
+                                { 
+	(yyval.node) = new Node("program"); 
+	(yyval.node)->add_child((yyvsp[-1].node)); 
+	//$$->visit(0); 
+	(yyval.node)->generate_code();
+}
+#line 1479 "language.tab.c"
     break;
 
   case 3: /* code: statement code  */
-#line 76 "language.y"
+#line 81 "language.y"
                      { Node* n = new Node("code"); n->add_child((yyvsp[-1].node)); n->add_child((yyvsp[0].node)); (yyval.node) = n; }
-#line 1475 "language.tab.c"
+#line 1485 "language.tab.c"
     break;
 
   case 4: /* code: statement  */
-#line 77 "language.y"
-                { (yyval.node) = (yyvsp[0].node); }
-#line 1481 "language.tab.c"
-    break;
-
-  case 5: /* statement: loop_statement  */
-#line 80 "language.y"
-                          { (yyval.node) = (yyvsp[0].node); }
-#line 1487 "language.tab.c"
-    break;
-
-  case 6: /* statement: if_statement  */
-#line 81 "language.y"
-                       { (yyval.node) = (yyvsp[0].node); }
-#line 1493 "language.tab.c"
-    break;
-
-  case 7: /* statement: assignment_statement  */
 #line 82 "language.y"
-                                { (yyval.node) = (yyvsp[0].node); }
-#line 1499 "language.tab.c"
+                { (yyval.node) = (yyvsp[0].node); }
+#line 1491 "language.tab.c"
     break;
 
-  case 8: /* statement: rectangle_statement  */
-#line 83 "language.y"
-                               { (yyval.node) = (yyvsp[0].node); }
-#line 1505 "language.tab.c"
-    break;
-
-  case 9: /* statement: pixel_statement  */
-#line 84 "language.y"
-                           { (yyval.node) = (yyvsp[0].node); }
-#line 1511 "language.tab.c"
-    break;
-
-  case 10: /* statement: music_statement  */
+  case 5: /* statement: clear_statement  */
 #line 85 "language.y"
                            { (yyval.node) = (yyvsp[0].node); }
-#line 1517 "language.tab.c"
+#line 1497 "language.tab.c"
     break;
 
-  case 11: /* loop_statement: LOOPHEAD compound_condition BEGINSTMT code ENDSTMT  */
+  case 6: /* statement: background_statement  */
+#line 86 "language.y"
+                                                        { (yyval.node) = (yyvsp[0].node); }
+#line 1503 "language.tab.c"
+    break;
+
+  case 7: /* statement: loop_statement  */
+#line 87 "language.y"
+                                                  { (yyval.node) = (yyvsp[0].node); }
+#line 1509 "language.tab.c"
+    break;
+
+  case 8: /* statement: if_statement  */
 #line 88 "language.y"
+                       { (yyval.node) = (yyvsp[0].node); }
+#line 1515 "language.tab.c"
+    break;
+
+  case 9: /* statement: assignment_statement  */
+#line 89 "language.y"
+                                { (yyval.node) = (yyvsp[0].node); }
+#line 1521 "language.tab.c"
+    break;
+
+  case 10: /* statement: rectangle_statement  */
+#line 90 "language.y"
+                               { (yyval.node) = (yyvsp[0].node); }
+#line 1527 "language.tab.c"
+    break;
+
+  case 11: /* statement: pixel_statement  */
+#line 91 "language.y"
+                           { (yyval.node) = (yyvsp[0].node); }
+#line 1533 "language.tab.c"
+    break;
+
+  case 12: /* statement: music_statement  */
+#line 92 "language.y"
+                           { (yyval.node) = (yyvsp[0].node); }
+#line 1539 "language.tab.c"
+    break;
+
+  case 13: /* clear_statement: CLEAR PERIOD  */
+#line 95 "language.y"
+                              {
+	(yyval.node) = new Node("clear");
+}
+#line 1547 "language.tab.c"
+    break;
+
+  case 14: /* background_statement: BACKGROUND color_literal PERIOD  */
+#line 99 "language.y"
+                                                     {
+	Constant* c = new Constant("background");
+	c->set_value((yyvsp[-1].intval));
+	(yyval.node) = c;
+}
+#line 1557 "language.tab.c"
+    break;
+
+  case 15: /* loop_statement: LOOPHEAD compound_condition BEGINSTMT code ENDSTMT  */
+#line 105 "language.y"
                                                                    { 
 	(yyval.node) = new Node("loop"); 
 	(yyval.node)->add_child((yyvsp[-3].node)); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
 }
-#line 1527 "language.tab.c"
+#line 1567 "language.tab.c"
     break;
 
-  case 12: /* if_statement: IFHEAD compound_condition BEGINSTMT code ENDSTMT  */
-#line 94 "language.y"
+  case 16: /* if_statement: IFHEAD compound_condition BEGINSTMT code ENDSTMT  */
+#line 111 "language.y"
                                                                { 
 	(yyval.node) = new Node("if"); 
 	(yyval.node)->add_child((yyvsp[-3].node)); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
 }
-#line 1537 "language.tab.c"
+#line 1577 "language.tab.c"
     break;
 
-  case 13: /* assignment_statement: VARIABLE ASSIGNMENT expression PERIOD  */
-#line 100 "language.y"
+  case 17: /* assignment_statement: VARIABLE ASSIGNMENT expression PERIOD  */
+#line 117 "language.y"
                                                             {
 	Node* n = new Node("assignment");
 	Identifier* id = new Identifier("number_variable");
@@ -1546,11 +1586,11 @@ yyreduce:
 	n->add_child((yyvsp[-1].node));
 	(yyval.node) = n;
 }
-#line 1550 "language.tab.c"
+#line 1590 "language.tab.c"
     break;
 
-  case 14: /* rectangle_statement: RECTANGLE color_literal COMMA expression COMMA expression COMMA expression COMMA expression PERIOD  */
-#line 109 "language.y"
+  case 18: /* rectangle_statement: RECTANGLE color_literal COMMA expression COMMA expression COMMA expression COMMA expression PERIOD  */
+#line 126 "language.y"
                                                                                                                         { 
 	(yyval.node) = new Node("rectangle");
 	Constant* c = new Constant("color"); 
@@ -1561,11 +1601,11 @@ yyreduce:
 	(yyval.node)->add_child((yyvsp[-3].node)); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
 }
-#line 1565 "language.tab.c"
+#line 1605 "language.tab.c"
     break;
 
-  case 15: /* pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD  */
-#line 120 "language.y"
+  case 19: /* pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD  */
+#line 137 "language.y"
                                                                               { 
 	(yyval.node) = new Node("pixel");
 	Constant* c = new Constant("color");
@@ -1574,224 +1614,224 @@ yyreduce:
 	(yyval.node)->add_child((yyvsp[-3].node)); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
 }
-#line 1578 "language.tab.c"
+#line 1618 "language.tab.c"
     break;
 
-  case 16: /* music_statement: MUSIC note_literal PERIOD  */
-#line 129 "language.y"
+  case 20: /* music_statement: MUSIC note_literal PERIOD  */
+#line 146 "language.y"
                                            {
 	(yyval.node) = new Node("music"); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
 }
-#line 1587 "language.tab.c"
+#line 1627 "language.tab.c"
     break;
 
-  case 17: /* expression: factor  */
-#line 134 "language.y"
+  case 21: /* expression: factor  */
+#line 151 "language.y"
                    { (yyval.node) = (yyvsp[0].node); }
-#line 1593 "language.tab.c"
+#line 1633 "language.tab.c"
     break;
 
-  case 18: /* expression: expression PLUS factor  */
-#line 135 "language.y"
+  case 22: /* expression: expression PLUS factor  */
+#line 152 "language.y"
                                                                  { Node* n = new Node("plus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1599 "language.tab.c"
+#line 1639 "language.tab.c"
     break;
 
-  case 19: /* expression: expression MINUS factor  */
-#line 136 "language.y"
-                                                                  { Node* n = new Node("minus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1605 "language.tab.c"
-    break;
-
-  case 20: /* factor: term  */
-#line 139 "language.y"
-             { (yyval.node) = (yyvsp[0].node); }
-#line 1611 "language.tab.c"
-    break;
-
-  case 21: /* factor: factor TIMES term  */
-#line 140 "language.y"
-                                            { Node* n = new Node("times"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1617 "language.tab.c"
-    break;
-
-  case 22: /* factor: factor DIVIDE term  */
-#line 141 "language.y"
-                                             { Node* n = new Node("divide"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1623 "language.tab.c"
-    break;
-
-  case 23: /* term: VARIABLE  */
-#line 144 "language.y"
-               { Identifier* id = new Identifier("variable"); id->set_value((yyvsp[0].strval)); (yyval.node) = id;  }
-#line 1629 "language.tab.c"
-    break;
-
-  case 24: /* term: NUMBER  */
-#line 145 "language.y"
-                         { Constant* n = new Constant( "number" ); n->set_value((yyvsp[0].intval)); (yyval.node) = n; }
-#line 1635 "language.tab.c"
-    break;
-
-  case 25: /* compound_condition: condition  */
-#line 148 "language.y"
-                              {(yyval.node) = (yyvsp[0].node); }
-#line 1641 "language.tab.c"
-    break;
-
-  case 26: /* compound_condition: condition AND condition  */
-#line 149 "language.y"
-                                                                                                  {Node* n = new Node("and"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
-#line 1647 "language.tab.c"
-    break;
-
-  case 27: /* compound_condition: condition OR condition  */
-#line 150 "language.y"
-                                                                                                 {Node* n = new Node("or"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
-#line 1653 "language.tab.c"
-    break;
-
-  case 28: /* condition: expression comparison expression  */
+  case 23: /* expression: expression MINUS factor  */
 #line 153 "language.y"
-                                            { Node* n = new Node("condition"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[-1].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1659 "language.tab.c"
+                                                                  { Node* n = new Node("minus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1645 "language.tab.c"
     break;
 
-  case 29: /* comparison: EQUALS  */
-#line 155 "language.y"
-                    { (yyval.node) = new Node("equals"); }
-#line 1665 "language.tab.c"
-    break;
-
-  case 30: /* comparison: GT  */
+  case 24: /* factor: term  */
 #line 156 "language.y"
-                                              { (yyval.node) = new Node("gt"); }
-#line 1671 "language.tab.c"
+             { (yyval.node) = (yyvsp[0].node); }
+#line 1651 "language.tab.c"
     break;
 
-  case 31: /* comparison: LT  */
+  case 25: /* factor: factor TIMES term  */
 #line 157 "language.y"
-                                              { (yyval.node) = new Node("lt"); }
-#line 1677 "language.tab.c"
+                                            { Node* n = new Node("times"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1657 "language.tab.c"
     break;
 
-  case 32: /* comparison: GORE  */
+  case 26: /* factor: factor DIVIDE term  */
 #line 158 "language.y"
-                                                { (yyval.node) = new Node("gore"); }
-#line 1683 "language.tab.c"
+                                             { Node* n = new Node("divide"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1663 "language.tab.c"
     break;
 
-  case 33: /* comparison: LORE  */
-#line 159 "language.y"
-                                                { (yyval.node) = new Node("lore"); }
-#line 1689 "language.tab.c"
+  case 27: /* term: VARIABLE  */
+#line 161 "language.y"
+               { Identifier* id = new Identifier("variable"); id->set_value((yyvsp[0].strval)); (yyval.node) = id;  }
+#line 1669 "language.tab.c"
     break;
 
-  case 34: /* color_literal: BLACK  */
-#line 164 "language.y"
-                     { (yyval.intval) = 0; }
-#line 1695 "language.tab.c"
+  case 28: /* term: NUMBER  */
+#line 162 "language.y"
+                         { Constant* n = new Constant( "number" ); n->set_value((yyvsp[0].intval)); (yyval.node) = n; }
+#line 1675 "language.tab.c"
     break;
 
-  case 35: /* color_literal: WHITE  */
+  case 29: /* compound_condition: condition  */
 #line 165 "language.y"
-                                                         { (yyval.intval) = 1; }
-#line 1701 "language.tab.c"
+                              {(yyval.node) = (yyvsp[0].node); }
+#line 1681 "language.tab.c"
     break;
 
-  case 36: /* color_literal: RED  */
+  case 30: /* compound_condition: condition AND condition  */
 #line 166 "language.y"
-                                                       { (yyval.intval) = 2; }
-#line 1707 "language.tab.c"
+                                                                                                  {Node* n = new Node("and"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
+#line 1687 "language.tab.c"
     break;
 
-  case 37: /* color_literal: CYAN  */
+  case 31: /* compound_condition: condition OR condition  */
 #line 167 "language.y"
-                    { (yyval.intval) = 3; }
-#line 1713 "language.tab.c"
+                                                                                                 {Node* n = new Node("or"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
+#line 1693 "language.tab.c"
     break;
 
-  case 38: /* color_literal: PURPLE  */
-#line 168 "language.y"
-                                                          { (yyval.intval) = 4; }
-#line 1719 "language.tab.c"
-    break;
-
-  case 39: /* color_literal: GREEN  */
-#line 169 "language.y"
-                     { (yyval.intval) = 5; }
-#line 1725 "language.tab.c"
-    break;
-
-  case 40: /* color_literal: BLUE  */
+  case 32: /* condition: expression comparison expression  */
 #line 170 "language.y"
-                    { (yyval.intval) = 6; }
-#line 1731 "language.tab.c"
+                                            { Node* n = new Node("condition"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[-1].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1699 "language.tab.c"
     break;
 
-  case 41: /* color_literal: YELLOW  */
-#line 171 "language.y"
-                      { (yyval.intval) = 7; }
-#line 1737 "language.tab.c"
-    break;
-
-  case 42: /* color_literal: ORANGE  */
+  case 33: /* comparison: EQUALS  */
 #line 172 "language.y"
-                      { (yyval.intval) = 8; }
-#line 1743 "language.tab.c"
+                    { (yyval.node) = new Node("equals"); }
+#line 1705 "language.tab.c"
     break;
 
-  case 43: /* color_literal: BROWN  */
+  case 34: /* comparison: GT  */
 #line 173 "language.y"
-                     { (yyval.intval) = 9; }
-#line 1749 "language.tab.c"
+                                              { (yyval.node) = new Node("gt"); }
+#line 1711 "language.tab.c"
     break;
 
-  case 44: /* color_literal: LTRED  */
+  case 35: /* comparison: LT  */
 #line 174 "language.y"
-                     { (yyval.intval) = 10; }
-#line 1755 "language.tab.c"
+                                              { (yyval.node) = new Node("lt"); }
+#line 1717 "language.tab.c"
     break;
 
-  case 45: /* color_literal: DKGREY  */
+  case 36: /* comparison: GORE  */
 #line 175 "language.y"
-                      { (yyval.intval) = 11; }
-#line 1761 "language.tab.c"
+                                                { (yyval.node) = new Node("gore"); }
+#line 1723 "language.tab.c"
     break;
 
-  case 46: /* color_literal: GREY  */
+  case 37: /* comparison: LORE  */
 #line 176 "language.y"
-                    { (yyval.intval) = 12; }
-#line 1767 "language.tab.c"
+                                                { (yyval.node) = new Node("lore"); }
+#line 1729 "language.tab.c"
     break;
 
-  case 47: /* color_literal: LTGREEN  */
-#line 177 "language.y"
-                       { (yyval.intval) = 13; }
-#line 1773 "language.tab.c"
+  case 38: /* color_literal: BLACK  */
+#line 181 "language.y"
+                     { (yyval.intval) = 0; }
+#line 1735 "language.tab.c"
     break;
 
-  case 48: /* color_literal: LTBLUE  */
-#line 178 "language.y"
-                      { (yyval.intval) = 14; }
-#line 1779 "language.tab.c"
-    break;
-
-  case 49: /* color_literal: LTGREY  */
-#line 179 "language.y"
-                      { (yyval.intval) = 15; }
-#line 1785 "language.tab.c"
-    break;
-
-  case 50: /* note_literal: NOTE  */
+  case 39: /* color_literal: WHITE  */
 #line 182 "language.y"
+                                                         { (yyval.intval) = 1; }
+#line 1741 "language.tab.c"
+    break;
+
+  case 40: /* color_literal: RED  */
+#line 183 "language.y"
+                                                       { (yyval.intval) = 2; }
+#line 1747 "language.tab.c"
+    break;
+
+  case 41: /* color_literal: CYAN  */
+#line 184 "language.y"
+                    { (yyval.intval) = 3; }
+#line 1753 "language.tab.c"
+    break;
+
+  case 42: /* color_literal: PURPLE  */
+#line 185 "language.y"
+                                                          { (yyval.intval) = 4; }
+#line 1759 "language.tab.c"
+    break;
+
+  case 43: /* color_literal: GREEN  */
+#line 186 "language.y"
+                     { (yyval.intval) = 5; }
+#line 1765 "language.tab.c"
+    break;
+
+  case 44: /* color_literal: BLUE  */
+#line 187 "language.y"
+                    { (yyval.intval) = 6; }
+#line 1771 "language.tab.c"
+    break;
+
+  case 45: /* color_literal: YELLOW  */
+#line 188 "language.y"
+                      { (yyval.intval) = 7; }
+#line 1777 "language.tab.c"
+    break;
+
+  case 46: /* color_literal: ORANGE  */
+#line 189 "language.y"
+                      { (yyval.intval) = 8; }
+#line 1783 "language.tab.c"
+    break;
+
+  case 47: /* color_literal: BROWN  */
+#line 190 "language.y"
+                     { (yyval.intval) = 9; }
+#line 1789 "language.tab.c"
+    break;
+
+  case 48: /* color_literal: LTRED  */
+#line 191 "language.y"
+                     { (yyval.intval) = 10; }
+#line 1795 "language.tab.c"
+    break;
+
+  case 49: /* color_literal: DKGREY  */
+#line 192 "language.y"
+                      { (yyval.intval) = 11; }
+#line 1801 "language.tab.c"
+    break;
+
+  case 50: /* color_literal: GREY  */
+#line 193 "language.y"
+                    { (yyval.intval) = 12; }
+#line 1807 "language.tab.c"
+    break;
+
+  case 51: /* color_literal: LTGREEN  */
+#line 194 "language.y"
+                       { (yyval.intval) = 13; }
+#line 1813 "language.tab.c"
+    break;
+
+  case 52: /* color_literal: LTBLUE  */
+#line 195 "language.y"
+                      { (yyval.intval) = 14; }
+#line 1819 "language.tab.c"
+    break;
+
+  case 53: /* color_literal: LTGREY  */
+#line 196 "language.y"
+                      { (yyval.intval) = 15; }
+#line 1825 "language.tab.c"
+    break;
+
+  case 54: /* note_literal: NOTE  */
+#line 199 "language.y"
                    { StringConstant* n = new StringConstant("note_literal"); n->set_value((yyvsp[0].strval)); (yyval.node) = n; }
-#line 1791 "language.tab.c"
+#line 1831 "language.tab.c"
     break;
 
 
-#line 1795 "language.tab.c"
+#line 1835 "language.tab.c"
 
       default: break;
     }
@@ -2015,7 +2055,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 184 "language.y"
+#line 201 "language.y"
 
 
 int main( int argc, char* argv[])

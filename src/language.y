@@ -44,6 +44,8 @@ extern SymbolTable symboltable;
 %token LORE
 %token BEGINSTMT
 %token ENDSTMT
+%token CLEAR
+%token BACKGROUND
 %token BLACK
 %token WHITE
 %token RED
@@ -65,25 +67,40 @@ extern SymbolTable symboltable;
 
 %define parse.error verbose
 
-%type<node> program code statement loop_statement if_statement assignment_statement rectangle_statement pixel_statement music_statement expression factor term compound_condition condition comparison /*number_literal*/ note_literal; 
+%type<node> program code statement clear_statement background_statement loop_statement if_statement assignment_statement rectangle_statement pixel_statement music_statement expression factor term compound_condition condition comparison /*number_literal*/ note_literal; 
 %type<intval> color_literal
 
 %%
-program: PRGMBEGIN code PRGMEND { $$ = new Node("program"); $$->add_child($2); //$$->visit(0); 
-       $$->generate_code();
-       }; 
+program: PRGMBEGIN code PRGMEND { 
+	$$ = new Node("program"); 
+	$$->add_child($2); 
+	//$$->visit(0); 
+	$$->generate_code();
+}; 
 
 code: statement code { Node* n = new Node("code"); n->add_child($1); n->add_child($2); $$ = n; }
     | statement { $$ = $1; }
     ;
 
-statement: loop_statement { $$ = $1; }
+statement: clear_statement { $$ = $1; }
+				 | background_statement { $$ = $1; }
+				 | loop_statement { $$ = $1; }
          | if_statement{ $$ = $1; }
          | assignment_statement { $$ = $1; }
          | rectangle_statement { $$ = $1; }
          | pixel_statement { $$ = $1; }
          | music_statement { $$ = $1; }
          ;
+
+clear_statement: CLEAR PERIOD {
+	$$ = new Node("clear");
+}
+
+background_statement: BACKGROUND color_literal PERIOD{
+	Constant* c = new Constant("background");
+	c->set_value($2);
+	$$ = c;
+};
 
 loop_statement: LOOPHEAD compound_condition BEGINSTMT code ENDSTMT { 
 	$$ = new Node("loop"); 

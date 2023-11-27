@@ -375,8 +375,8 @@ int Node::generate_code() const //TODO pls
       rts(); 
    }
    else if (m_token == "code") {
-	m_children[0]->generate_code();
-	m_children[1]->generate_code();
+			m_children[0]->generate_code();
+			m_children[1]->generate_code();
    }
    //TODO: We have an identifier token, so keep?
    //TODO: mayhaps edit
@@ -506,7 +506,7 @@ int Node::generate_code() const //TODO pls
 
       ldy_abs(st.address(x)); //Load X coordinate into register Y (backwards, I know, but that's how PLOT works)
       ldx_abs(st.address(y)); //Load Y coordinate into register X
-      clc(); //Clear carry bit to mean "set position"
+ 	     clc(); //Clear carry bit to mean "set position"
       jsr_abs(0xfff0); //Call kernal PLOT function
    }
 	 //TODO: Implement "color" we generate code but do not pass it as a param. see line 161.
@@ -526,7 +526,7 @@ int Node::generate_code() const //TODO pls
       if (m_children.size() < 5) {
          abort("Rectangle requires color,x,y, width, and height.\n", m_lineno);
       }
-      int color = dynamic_cast<Constant *>(m_children[0])->value();
+      int color = m_children[0]->generate_code();
       int x = m_children[1]->generate_code();
       int y = m_children[2]->generate_code();
       int w = m_children[3]->generate_code();

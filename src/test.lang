@@ -1,5 +1,7 @@
 Hello
-pixel: green, 10, 10.
-rectangle: red,1,1,5,5.
-rectangle: blue, 5,5,5,8.
+	clear.
+	background white.
+	pixel: green, 10, 10.
+	pixel: purple, 15, 15.
+	rectangle: black, 12, 12, 5, 5.
 Bye
