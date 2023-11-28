@@ -772,9 +772,7 @@ int Node::generate_code() const //TODO pls
       DEBUG("constant");
       const Constant* cstnt = dynamic_cast<const Constant *>(this);
 
-      //setup_sound();
-      //int dur = m_children[0]->play_sound(2145,60);
-      /*if (cstnt) {
+      if (cstnt) {
          int t = st.temporary();
          int value = cstnt->value();
 
@@ -786,11 +784,12 @@ int Node::generate_code() const //TODO pls
          sta_abs(addy);
          lda_imm(high(value));
          sta_abs(addy+1);
+	 this->setup_sound();
          this->play_sound(2145,60);
       }
       else {
          abort("Constant with no value1\n", m_lineno);
-      }*/
+      }
 
 
    }
