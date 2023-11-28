@@ -570,12 +570,12 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    75,    75,    82,    83,    86,    87,    89,    90,    91,
+       0,    76,    76,    83,    84,    87,    88,    89,    90,    91,
       92,    93,    94,    97,   101,   111,   117,   123,   132,   143,
-     152,   157,   158,   159,   162,   163,   164,   167,   168,   171,
-     172,   173,   176,   178,   179,   180,   181,   182,   187,   188,
-     189,   190,   191,   192,   193,   194,   195,   196,   197,   198,
-     199,   200,   201,   202,   205
+     152,   158,   159,   160,   163,   164,   165,   168,   169,   172,
+     173,   174,   177,   179,   180,   181,   182,   183,   188,   189,
+     190,   191,   192,   193,   194,   195,   196,   197,   198,   199,
+     200,   201,   202,   203,   206
 };
 #endif
 
@@ -1469,7 +1469,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: PRGMBEGIN code PRGMEND  */
-#line 75 "language.y"
+#line 76 "language.y"
                                 { 
 	(yyval.node) = new Node("program"); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
@@ -1480,62 +1480,62 @@ yyreduce:
     break;
 
   case 3: /* code: statement code  */
-#line 82 "language.y"
+#line 83 "language.y"
                      { Node* n = new Node("code"); n->add_child((yyvsp[-1].node)); n->add_child((yyvsp[0].node)); (yyval.node) = n; }
 #line 1486 "language.tab.c"
     break;
 
   case 4: /* code: statement  */
-#line 83 "language.y"
+#line 84 "language.y"
                 { (yyval.node) = (yyvsp[0].node); }
 #line 1492 "language.tab.c"
     break;
 
   case 5: /* statement: clear_statement  */
-#line 86 "language.y"
+#line 87 "language.y"
                            { (yyval.node) = (yyvsp[0].node); }
 #line 1498 "language.tab.c"
     break;
 
   case 6: /* statement: background_statement  */
-#line 87 "language.y"
-                                                        { (yyval.node) = (yyvsp[0].node); }
+#line 88 "language.y"
+                                  { (yyval.node) = (yyvsp[0].node); }
 #line 1504 "language.tab.c"
     break;
 
   case 7: /* statement: loop_statement  */
 #line 89 "language.y"
-                                                  { (yyval.node) = (yyvsp[0].node); }
+                            { (yyval.node) = (yyvsp[0].node); }
 #line 1510 "language.tab.c"
     break;
 
   case 8: /* statement: if_statement  */
 #line 90 "language.y"
-                       { (yyval.node) = (yyvsp[0].node); }
+                         { (yyval.node) = (yyvsp[0].node); }
 #line 1516 "language.tab.c"
     break;
 
   case 9: /* statement: assignment_statement  */
 #line 91 "language.y"
-                                { (yyval.node) = (yyvsp[0].node); }
+                                  { (yyval.node) = (yyvsp[0].node); }
 #line 1522 "language.tab.c"
     break;
 
   case 10: /* statement: rectangle_statement  */
 #line 92 "language.y"
-                               { (yyval.node) = (yyvsp[0].node); }
+                                 { (yyval.node) = (yyvsp[0].node); }
 #line 1528 "language.tab.c"
     break;
 
   case 11: /* statement: pixel_statement  */
 #line 93 "language.y"
-                           { (yyval.node) = (yyvsp[0].node); }
+                             { (yyval.node) = (yyvsp[0].node); }
 #line 1534 "language.tab.c"
     break;
 
   case 12: /* statement: music_statement  */
 #line 94 "language.y"
-                           { (yyval.node) = (yyvsp[0].node); }
+                             { (yyval.node) = (yyvsp[0].node); }
 #line 1540 "language.tab.c"
     break;
 
@@ -1621,218 +1621,219 @@ yyreduce:
   case 20: /* music_statement: MUSIC note_literal PERIOD  */
 #line 152 "language.y"
                                            {
-	(yyval.node) = new Node("music"); 
-	(yyval.node)->add_child((yyvsp[-1].node)); 
+//	$$ = new Node("music"); 
+//	$$->add_child($2); 
+	(yyval.node) = (yyvsp[-1].node);
 }
-#line 1628 "language.tab.c"
+#line 1629 "language.tab.c"
     break;
 
   case 21: /* expression: factor  */
-#line 157 "language.y"
+#line 158 "language.y"
                    { (yyval.node) = (yyvsp[0].node); }
-#line 1634 "language.tab.c"
+#line 1635 "language.tab.c"
     break;
 
   case 22: /* expression: expression PLUS factor  */
-#line 158 "language.y"
-                                                                 { Node* n = new Node("plus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1640 "language.tab.c"
+#line 159 "language.y"
+                                    { Node* n = new Node("plus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1641 "language.tab.c"
     break;
 
   case 23: /* expression: expression MINUS factor  */
-#line 159 "language.y"
-                                                                  { Node* n = new Node("minus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1646 "language.tab.c"
+#line 160 "language.y"
+                                     { Node* n = new Node("minus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1647 "language.tab.c"
     break;
 
   case 24: /* factor: term  */
-#line 162 "language.y"
+#line 163 "language.y"
              { (yyval.node) = (yyvsp[0].node); }
-#line 1652 "language.tab.c"
+#line 1653 "language.tab.c"
     break;
 
   case 25: /* factor: factor TIMES term  */
-#line 163 "language.y"
-                                            { Node* n = new Node("times"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1658 "language.tab.c"
+#line 164 "language.y"
+                                 { Node* n = new Node("times"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1659 "language.tab.c"
     break;
 
   case 26: /* factor: factor DIVIDE term  */
-#line 164 "language.y"
-                                             { Node* n = new Node("divide"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1664 "language.tab.c"
+#line 165 "language.y"
+                                  { Node* n = new Node("divide"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+#line 1665 "language.tab.c"
     break;
 
   case 27: /* term: VARIABLE  */
-#line 167 "language.y"
+#line 168 "language.y"
                { Identifier* id = new Identifier("variable"); id->set_value((yyvsp[0].strval)); (yyval.node) = id;  }
-#line 1670 "language.tab.c"
+#line 1671 "language.tab.c"
     break;
 
   case 28: /* term: NUMBER  */
-#line 168 "language.y"
+#line 169 "language.y"
                          { Constant* n = new Constant( "number" ); n->set_value((yyvsp[0].intval)); (yyval.node) = n; }
-#line 1676 "language.tab.c"
+#line 1677 "language.tab.c"
     break;
 
   case 29: /* compound_condition: condition  */
-#line 171 "language.y"
+#line 172 "language.y"
                               {(yyval.node) = (yyvsp[0].node); }
-#line 1682 "language.tab.c"
+#line 1683 "language.tab.c"
     break;
 
   case 30: /* compound_condition: condition AND condition  */
-#line 172 "language.y"
-                                                                                                  {Node* n = new Node("and"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
-#line 1688 "language.tab.c"
+#line 173 "language.y"
+                                            {Node* n = new Node("and"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
+#line 1689 "language.tab.c"
     break;
 
   case 31: /* compound_condition: condition OR condition  */
-#line 173 "language.y"
-                                                                                                 {Node* n = new Node("or"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
-#line 1694 "language.tab.c"
+#line 174 "language.y"
+                                           {Node* n = new Node("or"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
+#line 1695 "language.tab.c"
     break;
 
   case 32: /* condition: expression comparison expression  */
-#line 176 "language.y"
+#line 177 "language.y"
                                             { Node* n = new Node("condition"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[-1].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
-#line 1700 "language.tab.c"
+#line 1701 "language.tab.c"
     break;
 
   case 33: /* comparison: EQUALS  */
-#line 178 "language.y"
+#line 179 "language.y"
                     { (yyval.node) = new Node("equals"); }
-#line 1706 "language.tab.c"
+#line 1707 "language.tab.c"
     break;
 
   case 34: /* comparison: GT  */
-#line 179 "language.y"
-                                              { (yyval.node) = new Node("gt"); }
-#line 1712 "language.tab.c"
+#line 180 "language.y"
+                         { (yyval.node) = new Node("gt"); }
+#line 1713 "language.tab.c"
     break;
 
   case 35: /* comparison: LT  */
-#line 180 "language.y"
-                                              { (yyval.node) = new Node("lt"); }
-#line 1718 "language.tab.c"
+#line 181 "language.y"
+                         { (yyval.node) = new Node("lt"); }
+#line 1719 "language.tab.c"
     break;
 
   case 36: /* comparison: GORE  */
-#line 181 "language.y"
-                                                { (yyval.node) = new Node("gore"); }
-#line 1724 "language.tab.c"
+#line 182 "language.y"
+                           { (yyval.node) = new Node("gore"); }
+#line 1725 "language.tab.c"
     break;
 
   case 37: /* comparison: LORE  */
-#line 182 "language.y"
-                                                { (yyval.node) = new Node("lore"); }
-#line 1730 "language.tab.c"
+#line 183 "language.y"
+                           { (yyval.node) = new Node("lore"); }
+#line 1731 "language.tab.c"
     break;
 
   case 38: /* color_literal: BLACK  */
-#line 187 "language.y"
+#line 188 "language.y"
                      { (yyval.intval) = 0; }
-#line 1736 "language.tab.c"
+#line 1737 "language.tab.c"
     break;
 
   case 39: /* color_literal: WHITE  */
-#line 188 "language.y"
-                                                         { (yyval.intval) = 1; }
-#line 1742 "language.tab.c"
+#line 189 "language.y"
+                     { (yyval.intval) = 1; }
+#line 1743 "language.tab.c"
     break;
 
   case 40: /* color_literal: RED  */
-#line 189 "language.y"
-                                                       { (yyval.intval) = 2; }
-#line 1748 "language.tab.c"
+#line 190 "language.y"
+                   { (yyval.intval) = 2; }
+#line 1749 "language.tab.c"
     break;
 
   case 41: /* color_literal: CYAN  */
-#line 190 "language.y"
+#line 191 "language.y"
                     { (yyval.intval) = 3; }
-#line 1754 "language.tab.c"
+#line 1755 "language.tab.c"
     break;
 
   case 42: /* color_literal: PURPLE  */
-#line 191 "language.y"
-                                                          { (yyval.intval) = 4; }
-#line 1760 "language.tab.c"
+#line 192 "language.y"
+                      { (yyval.intval) = 4; }
+#line 1761 "language.tab.c"
     break;
 
   case 43: /* color_literal: GREEN  */
-#line 192 "language.y"
+#line 193 "language.y"
                      { (yyval.intval) = 5; }
-#line 1766 "language.tab.c"
+#line 1767 "language.tab.c"
     break;
 
   case 44: /* color_literal: BLUE  */
-#line 193 "language.y"
+#line 194 "language.y"
                     { (yyval.intval) = 6; }
-#line 1772 "language.tab.c"
+#line 1773 "language.tab.c"
     break;
 
   case 45: /* color_literal: YELLOW  */
-#line 194 "language.y"
+#line 195 "language.y"
                       { (yyval.intval) = 7; }
-#line 1778 "language.tab.c"
+#line 1779 "language.tab.c"
     break;
 
   case 46: /* color_literal: ORANGE  */
-#line 195 "language.y"
+#line 196 "language.y"
                       { (yyval.intval) = 8; }
-#line 1784 "language.tab.c"
+#line 1785 "language.tab.c"
     break;
 
   case 47: /* color_literal: BROWN  */
-#line 196 "language.y"
+#line 197 "language.y"
                      { (yyval.intval) = 9; }
-#line 1790 "language.tab.c"
+#line 1791 "language.tab.c"
     break;
 
   case 48: /* color_literal: LTRED  */
-#line 197 "language.y"
+#line 198 "language.y"
                      { (yyval.intval) = 10; }
-#line 1796 "language.tab.c"
+#line 1797 "language.tab.c"
     break;
 
   case 49: /* color_literal: DKGREY  */
-#line 198 "language.y"
+#line 199 "language.y"
                       { (yyval.intval) = 11; }
-#line 1802 "language.tab.c"
+#line 1803 "language.tab.c"
     break;
 
   case 50: /* color_literal: GREY  */
-#line 199 "language.y"
+#line 200 "language.y"
                     { (yyval.intval) = 12; }
-#line 1808 "language.tab.c"
+#line 1809 "language.tab.c"
     break;
 
   case 51: /* color_literal: LTGREEN  */
-#line 200 "language.y"
+#line 201 "language.y"
                        { (yyval.intval) = 13; }
-#line 1814 "language.tab.c"
+#line 1815 "language.tab.c"
     break;
 
   case 52: /* color_literal: LTBLUE  */
-#line 201 "language.y"
+#line 202 "language.y"
                       { (yyval.intval) = 14; }
-#line 1820 "language.tab.c"
+#line 1821 "language.tab.c"
     break;
 
   case 53: /* color_literal: LTGREY  */
-#line 202 "language.y"
+#line 203 "language.y"
                       { (yyval.intval) = 15; }
-#line 1826 "language.tab.c"
+#line 1827 "language.tab.c"
     break;
 
   case 54: /* note_literal: NOTE  */
-#line 205 "language.y"
-                   { StringConstant* n = new StringConstant("note_literal"); n->set_value((yyvsp[0].strval)); (yyval.node) = n; }
-#line 1832 "language.tab.c"
+#line 206 "language.y"
+                   { Constant* n = new Constant("note_literal"); n->set_value((yyvsp[0].intval)); (yyval.node) = n; }
+#line 1833 "language.tab.c"
     break;
 
 
-#line 1836 "language.tab.c"
+#line 1837 "language.tab.c"
 
       default: break;
     }
@@ -2056,7 +2057,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 207 "language.y"
+#line 209 "language.y"
 
 
 int main( int argc, char* argv[])

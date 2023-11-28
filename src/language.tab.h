@@ -112,7 +112,7 @@ union YYSTYPE
 
     int intval;
     char strval[256];
-		class Node* node;
+    class Node* node;
 
 #line 118 "language.tab.h"
 
