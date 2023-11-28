@@ -11,6 +11,19 @@ MeowText: language.l language.y node.h node.cpp opcodes.h opcodes.cpp helper.h h
 
 clean:
 	rm -f lex.yy.c language.tab.c MeowText
+	rm tests/all-maths.out
+	rm tests/background-colors.out
+	rm tests/ball.out
+	rm tests/clear-simple.out
+	rm tests/demo.out
+	rm tests/loops-ifs.out
+	rm tests/music-simple.out
+	rm tests/pixel-colors.out
+	rm tests/pixel-amount.out
+	rm tests/pixel-simple.out
+	rm tests/rectangle-colors.out
+	rm tests/rectangle-multi.out
+	rm tests/rectangle-simple.out
 
 test:
 	./MeowText < tests/test-clear-simple.meow > tests/clear-simple.out
