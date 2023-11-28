@@ -887,3 +887,4 @@ void Identifier::visit(int depth) const
       n->visit(depth+1);
    }
 }
+
