@@ -772,8 +772,8 @@ int Node::generate_code() const //TODO pls
       DEBUG("constant");
       const Constant* cstnt = dynamic_cast<const Constant *>(this);
 
-      setup_sound();
-      int dur = m_children[0]->play_sound(2145,60);
+      //setup_sound();
+      //int dur = m_children[0]->play_sound(2145,60);
       /*if (cstnt) {
          int t = st.temporary();
          int value = cstnt->value();
