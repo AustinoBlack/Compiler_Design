@@ -771,7 +771,10 @@ int Node::generate_code() const //TODO pls
    else if(m_token == "note_literal"){
       DEBUG("constant");
       const Constant* cstnt = dynamic_cast<const Constant *>(this);
-      if (cstnt) {
+
+      setup_sound();
+      int dur = m_children[0]->play_sound(2145,60);
+      /*if (cstnt) {
          int t = st.temporary();
          int value = cstnt->value();
 
@@ -783,11 +786,11 @@ int Node::generate_code() const //TODO pls
          sta_abs(addy);
          lda_imm(high(value));
          sta_abs(addy+1);
-         return t;
+         this->play_sound(2145,60);
       }
       else {
          abort("Constant with no value1\n", m_lineno);
-      }
+      }*/
 
 
    }
