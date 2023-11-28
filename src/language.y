@@ -212,10 +212,6 @@ struct Node* cur_node = NULL;
 int main( int argc, char* argv[])
 {		
   setup_sound();
-  play_sound(2145,60);
-  play_sound(3215,60);
-  play_sound(2145,60);
-  rts();
   yyparse();
   print_program();
 }

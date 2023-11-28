@@ -13,7 +13,7 @@ Hello
 		Then.
 			as long as: x is greater than 8 & y is greater than 0
 			Then.
-				music:😺5.
+				music: 😺5.
 				background ltgreen.
 				pixel: red, x, y.
 				x is x minus 1.

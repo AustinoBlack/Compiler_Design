@@ -735,6 +735,9 @@ int Node::generate_code() const //TODO pls
          sta_abs(addy);
          lda_imm(high(value));
          sta_abs(addy+1);
+	 play_sound(2145,60);
+//	}
+
       }
       else {
          abort("Constant with no value1\n", m_lineno);
