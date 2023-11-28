@@ -8,7 +8,7 @@
 /* regular expressions here */
 number_literal   -?[0-9]+
 variable_literal [a-z]+
-note_literal     [1-9]|(1[0-2])
+note_literal     $[1-9]|$(1[0-2])
 
 %option NOYYWRAP
 
