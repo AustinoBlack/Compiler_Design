@@ -170,9 +170,9 @@ term: VARIABLE { Identifier* id = new Identifier("variable"); id->set_value($1);
     		;
 
 compound_condition: condition {$$ = $1; } 
-			      | condition AND condition {Node* n = new Node("and"); n->add_child($1), n->add_child($3); $$=n;} 
-			      | condition OR condition {Node* n = new Node("or"); n->add_child($1), n->add_child($3); $$=n;}
-                  	      ; 
+		  | condition AND condition {Node* n = new Node("and"); n->add_child($1), n->add_child($3); $$=n;} 
+	          | condition OR condition {Node* n = new Node("or"); n->add_child($1), n->add_child($3); $$=n;}
+                  ; 
 
 condition: expression comparison expression { Node* n = new Node("condition"); n->add_child($1); n->add_child($2); n->add_child($3); $$=n; };
 
