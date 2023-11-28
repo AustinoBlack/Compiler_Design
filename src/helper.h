@@ -18,3 +18,7 @@ void sub_constant(int constant, int address);
 
 //Subtract value in "address1" from "constant2", storing result at "address2". 
 void sub_variables(int address1, int address2);
+
+void setup_sound();
+
+void play_sound(int pitch, int duration);
