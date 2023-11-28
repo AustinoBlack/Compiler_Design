@@ -23,5 +23,6 @@ test:
 	./MeowText < tests/test-loops-and-if.meow > tests/loops-ifs.out
 	./MeowText < tests/test-all-maths.meow > tests/all-maths.out
 	./MeowText < tests/test-pixel-amount.meow > tests/pixel-amount.out
+	./MeowText < tests/ball-demo.meow > tests/ball.out
 	./MeowText < tests/demo.meow > tests/demo.out
 	./MeowText < tests/test-music-simple.meow > tests/music-simple.out
