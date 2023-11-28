@@ -33,6 +33,58 @@ int high(const int address) {
    return address/256;
 }
 
+
+
+void setup_sound()
+{
+        int base = 0xd400;
+        const int volume = 15;
+        const int attack=12;
+        const int decay=1;
+        const int sustain=4;
+        const int release=0;
+        unsigned char ad = attack + (decay << 4);
+        unsigned char sr = sustain + (release << 4);
+
+        lda_imm(ad);
+        sta_abs(base+5);
+        lda_imm(sr);
+        sta_abs(base+6);
+
+        lda_imm(volume);
+        sta_abs(base+24);
+}
+
+void play_sound(int pitch, int duration)
+{
+        int sound_base = 0xd400;
+
+        pitch = int(pitch/0.06097);
+
+        int high_byte = high(pitch);
+        int low_byte = low(pitch);
+
+        lda_imm(low_byte);
+        sta_abs(sound_base);
+        lda_imm(high_byte);
+        sta_abs(sound_base+1);
+
+        lda_imm(33);
+        sta_abs(sound_base+4);
+
+        clc();
+        lda_imm(duration);
+        adc_z(0xa2);
+
+        int top = lt.address(lt.here()) - 2;
+        cmp_z(0xa2);
+        bne(top);
+
+        lda_imm(32);
+        sta_abs(sound_base+4);
+}
+
+
 int twos_complement(int byte)
 {
          if (byte < 0)

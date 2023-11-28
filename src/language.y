@@ -211,11 +211,11 @@ note_literal: NOTE { Constant* n = new Constant("note_literal"); n->set_value($1
 struct Node* cur_node = NULL;
 int main( int argc, char* argv[])
 {		
-  cur_node->setup_sound();
-  /*cur_node->play_sound(2145,60);
-  cur_node->play_sound(3215,60);
-  cur_node->play_sound(2145,60);
-  rts();*/
+  setup_sound();
+  play_sound(2145,60);
+  play_sound(3215,60);
+  play_sound(2145,60);
+  rts();
   yyparse();
   print_program();
 }
