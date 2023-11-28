@@ -1,4 +1,1 @@
-Syntax Error on line 2: Constant with no value1
-
-
-Partial Program output:173 134 2 133 2 
+Parse error in line 2: syntax error, unexpected NUMBER, expecting NOTE

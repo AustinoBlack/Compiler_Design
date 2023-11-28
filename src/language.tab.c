@@ -1828,7 +1828,7 @@ yyreduce:
 
   case 54: /* note_literal: NOTE  */
 #line 206 "language.y"
-                   { StringConstant* n = new StringConstant("note_literal"); n->set_value((yyvsp[0].strval)); (yyval.node) = n; }
+                   { Constant* n = new Constant("note_literal"); n->set_value((yyvsp[0].intval)); (yyval.node) = n; }
 #line 1833 "language.tab.c"
     break;
 
@@ -2057,7 +2057,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 208 "language.y"
+#line 209 "language.y"
 
 
 int main( int argc, char* argv[])

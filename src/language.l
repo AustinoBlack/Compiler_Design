@@ -8,7 +8,7 @@
 /* regular expressions here */
 number_literal   -?[0-9]+
 variable_literal [a-z]+
-note_literal     $[1-9]|&(1[0-2])
+note_literal     [1-9]|(1[0-2])
 
 %option NOYYWRAP
 
@@ -66,7 +66,7 @@ ltgrey			    {return LTGREY;}
 "\n"                        {lines++;}
 {number_literal}            { yylval.intval=atoi(yytext); return NUMBER;}
 {variable_literal}	    { strncpy(yylval.strval, yytext, 256); return VARIABLE;}
-{note_literal}              { strncpy(yylval.strval, yytext, 256); return NOTE;}
+{note_literal}              { yylval.intval=atoi(&yytext[1]); return NOTE;}
 
 %%
 

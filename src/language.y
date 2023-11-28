@@ -22,7 +22,7 @@ extern SymbolTable symboltable;
 
 %token<strval> VARIABLE
 %token<intval> NUMBER
-%token<strval> NOTE
+%token<intval> NOTE
 %token PRGMBEGIN
 %token PRGMEND
 %token LOOPHEAD
@@ -203,7 +203,8 @@ color_literal: BLACK { $$ = 0; }
              | LTGREY { $$ = 15; }
              ;              
 
-note_literal: NOTE { StringConstant* n = new StringConstant("note_literal"); n->set_value($1); $$ = n; };
+note_literal: NOTE { Constant* n = new Constant("note_literal"); n->set_value($1); $$ = n; };
+
 
 %%
 
