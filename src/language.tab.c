@@ -570,7 +570,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    75,    75,    82,    83,    86,    87,    89,    90,    91,
+       0,    76,    76,    83,    84,    87,    88,    89,    90,    91,
       92,    93,    94,    97,   101,   111,   117,   123,   132,   143,
      152,   158,   159,   160,   163,   164,   165,   168,   169,   172,
      173,   174,   177,   179,   180,   181,   182,   183,   188,   189,
@@ -1469,7 +1469,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: PRGMBEGIN code PRGMEND  */
-#line 75 "language.y"
+#line 76 "language.y"
                                 { 
 	(yyval.node) = new Node("program"); 
 	(yyval.node)->add_child((yyvsp[-1].node)); 
@@ -1480,62 +1480,62 @@ yyreduce:
     break;
 
   case 3: /* code: statement code  */
-#line 82 "language.y"
+#line 83 "language.y"
                      { Node* n = new Node("code"); n->add_child((yyvsp[-1].node)); n->add_child((yyvsp[0].node)); (yyval.node) = n; }
 #line 1486 "language.tab.c"
     break;
 
   case 4: /* code: statement  */
-#line 83 "language.y"
+#line 84 "language.y"
                 { (yyval.node) = (yyvsp[0].node); }
 #line 1492 "language.tab.c"
     break;
 
   case 5: /* statement: clear_statement  */
-#line 86 "language.y"
+#line 87 "language.y"
                            { (yyval.node) = (yyvsp[0].node); }
 #line 1498 "language.tab.c"
     break;
 
   case 6: /* statement: background_statement  */
-#line 87 "language.y"
+#line 88 "language.y"
                                   { (yyval.node) = (yyvsp[0].node); }
 #line 1504 "language.tab.c"
     break;
 
   case 7: /* statement: loop_statement  */
 #line 89 "language.y"
-                                                  { (yyval.node) = (yyvsp[0].node); }
+                            { (yyval.node) = (yyvsp[0].node); }
 #line 1510 "language.tab.c"
     break;
 
   case 8: /* statement: if_statement  */
 #line 90 "language.y"
-                       { (yyval.node) = (yyvsp[0].node); }
+                         { (yyval.node) = (yyvsp[0].node); }
 #line 1516 "language.tab.c"
     break;
 
   case 9: /* statement: assignment_statement  */
 #line 91 "language.y"
-                                { (yyval.node) = (yyvsp[0].node); }
+                                  { (yyval.node) = (yyvsp[0].node); }
 #line 1522 "language.tab.c"
     break;
 
   case 10: /* statement: rectangle_statement  */
 #line 92 "language.y"
-                               { (yyval.node) = (yyvsp[0].node); }
+                                 { (yyval.node) = (yyvsp[0].node); }
 #line 1528 "language.tab.c"
     break;
 
   case 11: /* statement: pixel_statement  */
 #line 93 "language.y"
-                           { (yyval.node) = (yyvsp[0].node); }
+                             { (yyval.node) = (yyvsp[0].node); }
 #line 1534 "language.tab.c"
     break;
 
   case 12: /* statement: music_statement  */
 #line 94 "language.y"
-                           { (yyval.node) = (yyvsp[0].node); }
+                             { (yyval.node) = (yyvsp[0].node); }
 #line 1540 "language.tab.c"
     break;
 
@@ -1636,13 +1636,13 @@ yyreduce:
 
   case 22: /* expression: expression PLUS factor  */
 #line 159 "language.y"
-                                            { Node* n = new Node("plus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+                                    { Node* n = new Node("plus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
 #line 1641 "language.tab.c"
     break;
 
   case 23: /* expression: expression MINUS factor  */
 #line 160 "language.y"
-                                             { Node* n = new Node("minus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
+                                     { Node* n = new Node("minus"); n->add_child((yyvsp[-2].node)); n->add_child((yyvsp[0].node)); (yyval.node)=n; }
 #line 1647 "language.tab.c"
     break;
 
@@ -1684,13 +1684,13 @@ yyreduce:
 
   case 30: /* compound_condition: condition AND condition  */
 #line 173 "language.y"
-                                                        {Node* n = new Node("and"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
+                                            {Node* n = new Node("and"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
 #line 1689 "language.tab.c"
     break;
 
   case 31: /* compound_condition: condition OR condition  */
 #line 174 "language.y"
-                                                       {Node* n = new Node("or"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
+                                           {Node* n = new Node("or"); n->add_child((yyvsp[-2].node)), n->add_child((yyvsp[0].node)); (yyval.node)=n;}
 #line 1695 "language.tab.c"
     break;
 
