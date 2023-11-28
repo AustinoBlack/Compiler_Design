@@ -1,5 +1,6 @@
 Hello
 	clear.
+	background ltgrey.
 	pixel: black, 14, 5.
 	pixel: black, 19, 5.
 	pixel: black, 13, 6.
@@ -15,12 +16,12 @@ Hello
 	pixel: black, 12, 9.
 	pixel: black, 21, 9.
 	pixel: black, 11, 10.
-	pixel: black, 15, 10.
-	pixel: black, 18, 10.
+	pixel: yellow, 15, 10.
+	pixel: yellow, 18, 10.
 	pixel: black, 22, 10.
 	pixel: black, 11, 11.
-	pixel: black, 15, 11.
-	pixel: black, 18, 11.
+	pixel: yellow, 15, 11.
+	pixel: yellow, 18, 11.
 	pixel: black, 22, 11.
 	pixel: black, 11, 12.
 	pixel: black, 22, 12.
