@@ -26,8 +26,6 @@ Fall 2023
 # Unimplemented Features
 - Division
 - Multiplication
-- note type (currently unimplemented)
-- music statements
 
 # Running and Testing
 - under the src/ directory, run "make" to compile

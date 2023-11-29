@@ -10,7 +10,7 @@ MeowText: language.l language.y node.h node.cpp opcodes.h opcodes.cpp helper.h h
 .PHONY: clean test
 
 clean:
-	rm -f lex.yy.c language.tab.c MeowText
+	rm -f lex.yy.c language.tab.c language.tab.h MeowText
 	rm tests/all-maths.out
 	rm tests/background-colors.out
 	rm tests/ball.out

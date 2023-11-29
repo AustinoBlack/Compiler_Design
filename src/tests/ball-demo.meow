@@ -11,9 +11,9 @@ Hello
 
 		if: x equals 31
 		Then.
+			music: 😺8.
 			as long as: x is greater than 8 & y is greater than 0
 			Then.
-				music: 😺5.
 				background ltgreen.
 				pixel: red, x, y.
 				x is x minus 1.
@@ -30,6 +30,7 @@ Hello
 
 		if: x equals 8
 		Then.
+			music: 😺9.
 			as long as: x is less than 31 & y is less than 23
 			Then.
 				background yellow.
@@ -47,6 +48,7 @@ Hello
 
 		if: y equals 23
 		Then.
+			music: 😺10.
 			as long as: y is greater than 0 & x is less than 31
 			Then.
 				background orange.
@@ -64,6 +66,7 @@ Hello
 
 		if: y equals 0
 		Then.
+			music: 😺11.
 			as long as: y is less than 23 & x is greater than 8
 			Then.
 				background cyan.

@@ -22,7 +22,6 @@ extern SymbolTable symboltable;
 
 %token<strval> VARIABLE
 %token<intval> NUMBER
-%token<intval> NOTE
 %token PRGMBEGIN
 %token PRGMEND
 %token LOOPHEAD
@@ -64,14 +63,27 @@ extern SymbolTable symboltable;
 %token LTGREEN
 %token LTBLUE
 %token LTGREY
+%token A 
+%token ASHARP 
+%token B 
+%token C
+%token CSHARP
+%token D 
+%token DSHARP
+%token E 
+%token F 
+%token FSHARP
+%token G 
+%token GSHARP
+%token HIGHA 
 %token PERIOD
 %token COMMA
 
 %define parse.error verbose
 
-%type<node> program code statement clear_statement background_statement /*input_statement*/ loop_statement if_statement assignment_statement rectangle_statement pixel_statement music_statement expression factor term compound_condition condition comparison /*number_literal*/ note_literal; 
+%type<node> program code statement clear_statement background_statement /*input_statement*/ loop_statement if_statement assignment_statement rectangle_statement pixel_statement music_statement expression factor term compound_condition condition comparison; 
 %type<intval> color_literal
-
+%type<intval> note_literal
 %%
 program: PRGMBEGIN code PRGMEND { 
 	$$ = new Node("program"); 
@@ -103,11 +115,7 @@ background_statement: BACKGROUND color_literal PERIOD{
 	c->set_value($2);
 	$$ = c;
 };
-/*
-input_statement: INPUT PERIOD {
 
-};
-*/
 loop_statement: LOOPHEAD compound_condition BEGINSTMT code ENDSTMT { 
 	$$ = new Node("loop"); 
 	$$->add_child($2); 
@@ -150,9 +158,9 @@ pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD {
 };
 
 music_statement: MUSIC note_literal PERIOD {
-//	$$ = new Node("music"); 
-//	$$->add_child($2); 
-	$$ = $2;
+	Constant* c = new Constant("music"); 
+	c->set_value($2);
+	$$ = c; 
 };
 
 expression: factor { $$ = $1; } 
@@ -183,13 +191,11 @@ comparison : EQUALS { $$ = new Node("equals"); }
 		    | LORE { $$ = new Node("lore"); }
 	            ;
 
-//number_literal: NUMBER { Constant* n = new Constant("number_literal"); n->set_value($1); $$ = n; };
-
 color_literal: BLACK { $$ = 0; }
-	     | WHITE { $$ = 1; } 
-	     | RED { $$ = 2; } 
+	     			 | WHITE { $$ = 1; } 
+	           | RED { $$ = 2; } 
              | CYAN { $$ = 3; } 
- 	     | PURPLE { $$ = 4; } 
+ 	           | PURPLE { $$ = 4; } 
              | GREEN { $$ = 5; } 
              | BLUE { $$ = 6; } 
              | YELLOW { $$ = 7; } 
@@ -203,9 +209,20 @@ color_literal: BLACK { $$ = 0; }
              | LTGREY { $$ = 15; }
              ;              
 
-note_literal: NOTE { Constant* n = new Constant("note_literal"); n->set_value($1); $$ = n; };
-
-
+note_literal: A { $$ = 0; } 
+						| ASHARP { $$ = 1; }
+						| B { $$ = 2; }
+						| C { $$ = 3; }
+						| CSHARP { $$ = 4; }
+						| D { $$ = 5; }
+						| DSHARP { $$ = 6; }
+						| E { $$ = 7; }
+						| F { $$ = 8; }
+						| FSHARP { $$ = 9; }
+						| G { $$ = 10; }
+						| GSHARP { $$ = 11; }
+						| HIGHA { $$ = 12; }
+					  ;
 %%
 
 struct Node* cur_node = NULL;
