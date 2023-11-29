@@ -154,13 +154,15 @@ pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD {
 	c->set_value($2); 
 	$$->add_child(c); 
 	$$->add_child($4); 
-	$$->add_child($6); 
+	$$->add_child($6);
 };
 
-music_statement: MUSIC note_literal PERIOD {
-	Constant* c = new Constant("music"); 
-	c->set_value($2);
-	$$ = c; 
+music_statement: MUSIC note_literal COMMA expression PERIOD {
+	$$ = new Node("music");
+	Constant* n = new Constant("note"); 
+	n->set_value($2);
+	$$->add_child(n);
+	$$->add_child($4);	
 };
 
 expression: factor { $$ = $1; } 
