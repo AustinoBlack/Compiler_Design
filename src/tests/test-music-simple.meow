@@ -1,7 +1,7 @@
 Hello
+	clear.
 	i is 0.
-
-	as long as: i is less than 1
+	as long as: i is less than 3
 	Then.
 	as long as: i is less than 12
 	Then.
@@ -51,7 +51,7 @@ Hello
 		i is i plus 1.
 	Now.
 
-	i is 0.
+	i is i plus 1.
 	Now.
 
 Bye
