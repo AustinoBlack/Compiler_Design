@@ -1,6 +1,57 @@
 Hello
-	music: 😺5.
-	music: 😺5.
-	music: 😺5.
-	music: 😺5.
+	i is 0.
+
+	as long as: i is less than 1
+	Then.
+	as long as: i is less than 12
+	Then.
+		music: 😺0.
+		music: 😺1.
+		music: 😺5.
+		i is i plus 1.
+	Now.
+
+	as long as: i is less than 15
+	Then.
+		music: 😺2.
+		music: 😺8.
+		i is i plus 1.
+	Now.
+
+	as long as: i is less than 20
+	Then.
+		music: 😺9.
+		music: 😺9.
+		music: 😺3.
+		i is i plus 1.
+	Now.
+
+	as long as: i is less than 22
+	Then.
+		music: 😺4.
+		music: 😺10.
+		i is i plus 1.
+	Now.
+
+	as long as: i is less than 26
+	Then.
+		music: 😺6.
+		music: 😺6.
+		music: 😺8.
+		music: 😺7.
+		i is i plus 1. 
+	Now.
+	
+	as long as: i is less than 30
+	Then.
+		music: 😺10.
+		music: 😺10.
+		music: 😺1.
+		music: 😺3.
+		i is i plus 1.
+	Now.
+
+	i is 0.
+	Now.
+
 Bye

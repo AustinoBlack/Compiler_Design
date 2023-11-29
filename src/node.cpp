@@ -446,7 +446,7 @@ int Node::generate_code() const //TODO pls
       }
       if (m_children[1]->m_token == "number") {
          const Constant* child = dynamic_cast<const Constant *>(m_children[1]);
-         lda_imm(low(child->value()));
+				 lda_imm(low(child->value()));
          sta_abs(st.address(variable));
          lda_imm(high(child->value()));
          sta_abs(st.address(variable)+1);
@@ -719,31 +719,51 @@ int Node::generate_code() const //TODO pls
       lda_imm(147); //Load code for CLR/HOME (0x93) into accumulator
       jsr_abs(0xffd2); //Call kernal CHROUT function to print to screen
    }
-   else if(m_token == "note_literal"){
-      DEBUG("constant");
-      const Constant* cstnt = dynamic_cast<const Constant *>(this);
-
-      if (cstnt) {
-         int t = st.temporary();
-         int value = cstnt->value();
-
-         lda_imm(low(value));
-         int addy = st.address(t);
-         if (addy < 0) {
-            abort("Constant with no address\n", m_lineno);
-         }
-         sta_abs(addy);
-         lda_imm(high(value));
-         sta_abs(addy+1);
-	 play_sound(2145,60);
-//	}
-
+   else if(m_token == "music"){	
+      DEBUG("music");
+			const Constant* note = dynamic_cast<const Constant *>(this);
+      if (!note) {
+					abort( "Invalid Note\n", m_lineno );
       }
-      else {
-         abort("Constant with no value1\n", m_lineno);
-      }
-
-
+			else if( note->value() == 0 ){
+	 			 play_sound(0,10);
+			}
+			else if( note->value() == 1 ){
+	 			 play_sound(100,10);
+			}
+			else if( note->value() == 2 ){
+	 			 play_sound(200,10);
+			}
+			else if( note->value() == 3 ){
+	 			 play_sound(300,10);
+			}
+			else if( note->value() == 4 ){
+	 			 play_sound(400,10);
+			}
+			else if( note->value() == 5 ){
+	 			 play_sound(500,10);
+			}
+			else if( note->value()  == 6 ){
+	 			 play_sound(600,10);
+			}
+			else if( note->value()  == 7 ){
+	 			 play_sound(700,10);
+			}
+			else if( note->value()  == 8 ){
+	 			 play_sound(800,10);
+			}
+			else if( note->value()  == 9 ){
+	 			 play_sound(900,10);
+			}
+			else if( note->value()  == 10 ){
+	 			 play_sound(1000,10);
+			}
+			else if( note->value()  == 11 ){
+	 			 play_sound(1100,10);
+			}
+			else if( note->value()  == 12 ){
+	 			 play_sound(1200,10);
+			}
    }
    else {
       abort(string("Unimplemented token: ") + m_token, m_lineno);

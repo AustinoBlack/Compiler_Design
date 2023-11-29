@@ -8,7 +8,6 @@
 /* regular expressions here */
 number_literal   -?[0-9]+
 variable_literal [a-z]+
-note_literal     😺[1-9]|😺(1[0-2])
 
 %option NOYYWRAP
 
@@ -60,13 +59,25 @@ grey			    {return GREY;}
 ltgreen			    {return LTGREEN;}
 ltblue			    {return LTBLUE;}
 ltgrey			    {return LTGREY;}
+😺0						{return A;}
+😺1           {return ASHARP;}
+😺2           {return B;}
+😺3           {return C;}
+😺4           {return CSHARP;}
+😺5           {return D;}
+😺6           {return DSHARP;}
+😺7           {return E;}
+😺8           {return F;}
+😺9           {return FSHARP;}
+😺10          {return G;}
+😺11          {return GSHARP;}
+😺12          {return HIGHA;}
 "."                         {return PERIOD;}
 ","                         {return COMMA;}
 [ \t]                       //Whitespace
 "\n"                        {lines++;}
 {number_literal}            { yylval.intval=atoi(yytext); return NUMBER;}
 {variable_literal}	    { strncpy(yylval.strval, yytext, 256); return VARIABLE;}
-{note_literal}              { yylval.intval=atoi(&yytext[1]); return NOTE;}
 
 %%
 
