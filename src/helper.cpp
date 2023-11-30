@@ -35,7 +35,7 @@ int high(const int address) {
 
 
 
-void setup_sound()
+void setup_sound() // TODO: Look into playing sounds on the other two audio channels for multiple "voices"
 {
         int base = 0xd400;
         const int volume = 15;
@@ -55,7 +55,7 @@ void setup_sound()
         sta_abs(base+24);
 }
 
-void play_sound(int pitch, int duration)
+void play_sound(int pitch, int duration) // TODO: Look into playing sounds on the other two audio channels for multiple "voices"
 {
         int sound_base = 0xd400;
 
