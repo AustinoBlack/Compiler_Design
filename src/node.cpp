@@ -157,10 +157,9 @@ int Node::logical_and(int left, int right)
       sty_abs(st.address(result));
       return result;
 }
-
 void Node::generate_point(int x, int y) const
 {
-      if (x < 0) {
+      if(x < 0) {
          abort("Point with undefined x coordinate.\n", m_lineno);
       }
       int addx = st.address(x);
@@ -224,8 +223,8 @@ void Node::generate_point(int x, int y) const
       lda_z(2);         //Load current color
       sta_indy(0xfe);   //Store at *0xfe
 }
-
-void Node::generate_rect(int x1, int y1, int w, int h) const
+//TODO: added color to generate rect because our rectangle is color, x, y, width, height
+void Node::generate_rect(/*int color,*/ int x1, int y1, int w, int h) const
 {
    int x = st.temporary();
    int x2 = st.temporary(); 
@@ -286,8 +285,9 @@ void Node::generate_rect(int x1, int y1, int w, int h) const
    bne(first_if+3);
    int placeholder2 = bytes.size();
    jmp(0);
-   generate_point(x,y1);
-   generate_point(x,y2);
+   //TODO: added color here
+   generate_point(/*color,*/x,y1);
+   generate_point(/*color,*/x,y2);
 
    //End if
    int end_if1 = lt.address(lt.here());
@@ -301,9 +301,9 @@ void Node::generate_rect(int x1, int y1, int w, int h) const
    bne(second_if+3);
    int placeholder3 = bytes.size();
    jmp(0);
-
-   generate_point(x1,y);
-   generate_point(x2,y);
+   //TODO: added color here
+   generate_point(/*color,*/x1,y);
+   generate_point(/*color,*/x2,y);
 
    //End if
    int end_if2 = lt.address(lt.here());
@@ -354,6 +354,55 @@ void Node::set_token(const string& name)
    m_token = name;
 }
 
+void Node::setup_sound()
+{
+        int base = 0xd400;
+        const int volume = 15;
+        const int attack=12;
+        const int decay=1;
+        const int sustain=4;
+        const int release=0;
+        unsigned char ad = attack + (decay << 4);
+        unsigned char sr = sustain + (release << 4);
+
+        lda_imm(ad);
+        sta_abs(base+5);
+        lda_imm(sr);
+        sta_abs(base+6);
+
+        lda_imm(volume);
+        sta_abs(base+24);
+}
+
+void Node::play_sound(int pitch, int duration)
+{
+        int sound_base = 0xd400;
+
+        pitch = int(pitch/0.06097);
+
+        int high_byte = high(pitch);
+        int low_byte = low(pitch);
+
+        lda_imm(low_byte);
+        sta_abs(sound_base);
+        lda_imm(high_byte);
+        sta_abs(sound_base+1);
+
+        lda_imm(33);
+        sta_abs(sound_base+4);
+
+        clc();
+        lda_imm(duration);
+        adc_z(0xa2);
+
+        int top = lt.address(lt.here()) - 2;
+        cmp_z(0xa2);
+        bne(top);
+
+        lda_imm(32);
+        sta_abs(sound_base+4);
+}
+
 int Node::generate_code() const //TODO pls
 {
    current = this;
@@ -369,11 +418,13 @@ int Node::generate_code() const //TODO pls
       m_children[0]->generate_code();
       rts(); 
    }
-   //TODO: Add tokens for Hello and Bye?
-
+   else if (m_token == "code") {
+			m_children[0]->generate_code();
+			m_children[1]->generate_code();
+   }
    //TODO: We have an identifier token, so keep?
    //TODO: mayhaps edit
-   else if (m_token == "identifier") {
+   else if (m_token == "variable") {
       DEBUG("identifier");
       const Identifier* id = dynamic_cast<const Identifier *>(this);
       if (!id) {
@@ -391,7 +442,7 @@ int Node::generate_code() const //TODO pls
    }
    //TODO: We have a constant token, so keep?
    //TODO: mayhaps edit
-   else if (m_token == "constant") {
+   else if (m_token == "number") {
       DEBUG("constant");
       const Constant* cstnt = dynamic_cast<const Constant *>(this);
       if (cstnt) {
@@ -442,14 +493,14 @@ int Node::generate_code() const //TODO pls
       if (variable < 0) {
          abort("Assigning to identifier with no symbol.\n", m_lineno);
       }
-      if (m_children[1]->m_token == "constant") {
+      if (m_children[1]->m_token == "number") {
          const Constant* child = dynamic_cast<const Constant *>(m_children[1]);
          lda_imm(low(child->value()));
          sta_abs(st.address(variable));
          lda_imm(high(child->value()));
          sta_abs(st.address(variable)+1);
       }
-      else if (m_children[1]->m_token == "identifier") {
+      else if (m_children[1]->m_token == "variable") {
          const Identifier* child = dynamic_cast<const Identifier*>(m_children[1]);
          int id = st.id_of(child->value());
          if (id < 0) {
@@ -499,26 +550,27 @@ int Node::generate_code() const //TODO pls
 
       ldy_abs(st.address(x)); //Load X coordinate into register Y (backwards, I know, but that's how PLOT works)
       ldx_abs(st.address(y)); //Load Y coordinate into register X
-      clc(); //Clear carry bit to mean "set position"
+ 	     clc(); //Clear carry bit to mean "set position"
       jsr_abs(0xfff0); //Call kernal PLOT function
    }
-   //TODO: I think this is equivalent to our "pixel" token
-   else if (m_token == "point") {
+	 //TODO: Implement "color" we generate code but do not pass it as a param. see line 161.
+   else if (m_token == "pixel") {
          DEBUG("point");
-      if (m_children.size() < 2) {
-         abort("Point requires two coordinates.\n", m_lineno);
+      if (m_children.size() < 3) {
+         abort("Point requires color, x, y.\n", m_lineno);
       }
-      int x = m_children[0]->generate_code();
-      int y = m_children[1]->generate_code();
-      this->generate_point(x,y);
+      int color = m_children[0]->generate_code();
+      int x = m_children[1]->generate_code();
+      int y = m_children[2]->generate_code();
+      this->generate_point(/*color,*/x,y);
    }
-   //TODO will need to edit rectangle token to fit our code
+   //TODO: Implement "color" we generate code but do not pass it as a param. see line 228
    else if (m_token == "rectangle") {
          DEBUG("rect");
       if (m_children.size() < 5) {
          abort("Rectangle requires color,x,y, width, and height.\n", m_lineno);
       }
-      int color = dynamic_cast<Constant *>(m_children[0])->value();
+      int color = m_children[0]->generate_code();
       int x = m_children[1]->generate_code();
       int y = m_children[2]->generate_code();
       int w = m_children[3]->generate_code();
@@ -546,7 +598,7 @@ int Node::generate_code() const //TODO pls
       bytes[backpatch+2] = high(end);
    }
    //TODO: we have a while loop i think so keep this
-   else if (m_token == "while") {
+   else if (m_token == "loop") {
       DEBUG("while");
       if (m_children.size() < 2) {
          abort("If statement requires both condition and body\n", m_lineno);
@@ -605,22 +657,22 @@ int Node::generate_code() const //TODO pls
       int right_addy = st.address(right);
 
       int top;
-      if (m_children[1]->m_token == "LT") {
+      if (m_children[1]->m_token == "lt") {
          return less(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "GT") {
+      else if (m_children[1]->m_token == "gt") {
          return greater(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "EQ") {
+      else if (m_children[1]->m_token == "equals") {
          return eq(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "NE") {
+      else if (m_children[1]->m_token == "NE") { //impelment?
          return ne(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "LTE") {
+      else if (m_children[1]->m_token == "lore") {
          return less_equal(left_addy, right_addy);
       }
-      else if (m_children[1]->m_token == "GTE") {
+      else if (m_children[1]->m_token == "gore") {
          return greater_equal(left_addy, right_addy);
       }
       abort(string("Not implemented: ") + m_children[1]->m_token, m_lineno);
@@ -715,6 +767,29 @@ int Node::generate_code() const //TODO pls
    else if (m_token == "clear") {
       lda_imm(147); //Load code for CLR/HOME (0x93) into accumulator
       jsr_abs(0xffd2); //Call kernal CHROUT function to print to screen
+   }
+   else if(m_token == "note_literal"){
+      DEBUG("constant");
+      const Constant* cstnt = dynamic_cast<const Constant *>(this);
+      if (cstnt) {
+         int t = st.temporary();
+         int value = cstnt->value();
+
+         lda_imm(low(value));
+         int addy = st.address(t);
+         if (addy < 0) {
+            abort("Constant with no address\n", m_lineno);
+         }
+         sta_abs(addy);
+         lda_imm(high(value));
+         sta_abs(addy+1);
+         return t;
+      }
+      else {
+         abort("Constant with no value1\n", m_lineno);
+      }
+
+
    }
    else {
       abort(string("Unimplemented token: ") + m_token, m_lineno);
@@ -812,3 +887,4 @@ void Identifier::visit(int depth) const
       n->visit(depth+1);
    }
 }
+

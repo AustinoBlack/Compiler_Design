@@ -1,0 +1,14 @@
+Hello
+	clear.
+	x is 0.
+	as long as: x is less than 35
+	Then.
+		y is 0.
+		as long as: y is less than 25
+		Then.
+				pixel: black, x plus 1, y plus 1.
+				y is y plus 1.
+		Now.
+	x is x plus 1.
+	Now.
+Bye

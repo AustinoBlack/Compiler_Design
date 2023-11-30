@@ -21,6 +21,8 @@ class Node {
       void add_child(Node* const kid);
       void generate_point(int x, int y) const;
       void generate_rect(int x1, int y1, int w, int h) const;
+      void setup_sound();
+      void play_sound(int pitch, int duration);
       static int eq(int left, int right);
       static int ne(int left, int right);
       static int less(int left, int right);

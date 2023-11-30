@@ -1,0 +1,10 @@
+Hello
+	clear.
+	rectangle: black, 5, 5, 2, 2.
+	rectangle: white, 10, 10, 1, 1.
+	rectangle: red, 8, 5, 2, 2.
+	rectangle: green, 12, 12, 3, 3.
+	rectangle: yellow, 16, 12, 1, 1.
+	rectangle: ltgreen, 18, 12, 1, 1.
+	rectangle: ltred, 20, 12, 1, 1.
+Bye

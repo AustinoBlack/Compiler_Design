@@ -1,0 +1,83 @@
+Hello
+	clear.
+
+	x is 8.
+	y is 11.
+
+	i is 0.
+	as long as: i is less than 1000
+	Then.
+		pixel: red, x, y.
+
+		if: x equals 31
+		Then.
+			as long as: x is greater than 8 & y is greater than 0
+			Then.
+				background ltgreen.
+				pixel: red, x, y.
+				x is x minus 1.
+				y is y minus 1.
+
+				j is 0.
+				as long as: j is less than 500
+				Then.
+					j is j plus 1.
+				Now.
+			Now.
+			clear.
+		Now.
+
+		if: x equals 8
+		Then.
+			as long as: x is less than 31 & y is less than 23
+			Then.
+				background yellow.
+				pixel: red, x, y.
+				x is x plus 1.
+				y is y plus 1.
+        
+				j is 0.
+        as long as: j is less than 500 
+        Then.
+          j is j plus 1.
+        Now.
+			Now.
+		Now.
+
+		if: y equals 23
+		Then.
+			as long as: y is greater than 0 & x is less than 31
+			Then.
+				background orange.
+				pixel: red, x, y.
+				x is x plus 1.
+				y is y minus 1.        
+				
+				j is 0.
+        as long as: j is less than 500 
+        Then.
+          j is j plus 1.
+        Now.
+			Now.
+		Now.
+
+		if: y equals 0
+		Then.
+			as long as: y is less than 23 & x is greater than 8
+			Then.
+				background cyan.
+				pixel: red, x, y.
+				x is x minus 1.
+				y is y plus 1.
+				
+				j is 0.
+        as long as: j is less than 500 
+        Then.
+          j is j plus 1.
+        Now.
+			Now.
+		Now.
+
+		i is i plus 1.
+	Now.
+Bye

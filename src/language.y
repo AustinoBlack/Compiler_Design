@@ -17,11 +17,12 @@ extern SymbolTable symboltable;
 %union {
     int intval;
     char strval[256];
-		class Node* node;
+    class Node* node;
 }
+
 %token<strval> VARIABLE
 %token<intval> NUMBER
-%token<strval> NOTE
+%token<intval> NOTE
 %token PRGMBEGIN
 %token PRGMEND
 %token LOOPHEAD
@@ -44,6 +45,9 @@ extern SymbolTable symboltable;
 %token LORE
 %token BEGINSTMT
 %token ENDSTMT
+%token CLEAR
+%token BACKGROUND
+%token INPUT
 %token BLACK
 %token WHITE
 %token RED
@@ -65,26 +69,45 @@ extern SymbolTable symboltable;
 
 %define parse.error verbose
 
-%type<node> program code statement loop_statement if_statement assignment_statement rectangle_statement pixel_statement music_statement expression factor term compound_condition condition comparison /*number_literal*/ note_literal; 
+%type<node> program code statement clear_statement background_statement /*input_statement*/ loop_statement if_statement assignment_statement rectangle_statement pixel_statement music_statement expression factor term compound_condition condition comparison /*number_literal*/ note_literal; 
 %type<intval> color_literal
 
 %%
-program: PRGMBEGIN code PRGMEND { $$ = new Node("program"); $$->add_child($2); //$$->visit(0); 
-       $$->generate_code();
-       }; 
+program: PRGMBEGIN code PRGMEND { 
+	$$ = new Node("program"); 
+	$$->add_child($2); 
+	//$$->visit(0); 
+	$$->generate_code();
+}; 
 
 code: statement code { Node* n = new Node("code"); n->add_child($1); n->add_child($2); $$ = n; }
     | statement { $$ = $1; }
     ;
 
-statement: loop_statement { $$ = $1; }
-         | if_statement{ $$ = $1; }
-         | assignment_statement { $$ = $1; }
-         | rectangle_statement { $$ = $1; }
-         | pixel_statement { $$ = $1; }
-         | music_statement { $$ = $1; }
-         ;
+statement: clear_statement { $$ = $1; }
+	   | background_statement { $$ = $1; }
+	   | loop_statement { $$ = $1; }
+           | if_statement{ $$ = $1; }
+           | assignment_statement { $$ = $1; }
+           | rectangle_statement { $$ = $1; }
+           | pixel_statement { $$ = $1; }
+           | music_statement { $$ = $1; }
+           ;
 
+clear_statement: CLEAR PERIOD {
+	$$ = new Node("clear");
+};
+
+background_statement: BACKGROUND color_literal PERIOD{
+	Constant* c = new Constant("background");
+	c->set_value($2);
+	$$ = c;
+};
+/*
+input_statement: INPUT PERIOD {
+
+};
+*/
 loop_statement: LOOPHEAD compound_condition BEGINSTMT code ENDSTMT { 
 	$$ = new Node("loop"); 
 	$$->add_child($2); 
@@ -99,7 +122,7 @@ if_statement: IFHEAD compound_condition BEGINSTMT code ENDSTMT {
 
 assignment_statement: VARIABLE ASSIGNMENT expression PERIOD {
 	Node* n = new Node("assignment");
-	Identifier* id = new Identifier("number_variable");
+	Identifier* id = new Identifier("variable");
 	id->set_value(string($1));
 	n->add_child(id);
 	n->add_child($3);
@@ -127,45 +150,46 @@ pixel_statement: PIXEL color_literal COMMA expression COMMA expression PERIOD {
 };
 
 music_statement: MUSIC note_literal PERIOD {
-	$$ = new Node("music"); 
-	$$->add_child($2); 
+//	$$ = new Node("music"); 
+//	$$->add_child($2); 
+	$$ = $2;
 };
 
 expression: factor { $$ = $1; } 
-					| expression PLUS factor { Node* n = new Node("plus"); n->add_child($1); n->add_child($3); $$=n; } 
-					| expression MINUS factor { Node* n = new Node("minus"); n->add_child($1); n->add_child($3); $$=n; }
-          ;
+	   | expression PLUS factor { Node* n = new Node("plus"); n->add_child($1); n->add_child($3); $$=n; } 
+	   | expression MINUS factor { Node* n = new Node("minus"); n->add_child($1); n->add_child($3); $$=n; }
+           ;
 
 factor: term { $$ = $1; } 
- 			| factor TIMES term { Node* n = new Node("times"); n->add_child($1); n->add_child($3); $$=n; } 
-			| factor DIVIDE term { Node* n = new Node("divide"); n->add_child($1); n->add_child($3); $$=n; }
-      ; 
+ 	     | factor TIMES term { Node* n = new Node("times"); n->add_child($1); n->add_child($3); $$=n; } 
+	     | factor DIVIDE term { Node* n = new Node("divide"); n->add_child($1); n->add_child($3); $$=n; }
+      	     ; 
 
 term: VARIABLE { Identifier* id = new Identifier("variable"); id->set_value($1); $$ = id;  } 
 		| NUMBER { Constant* n = new Constant( "number" ); n->set_value($1); $$ = n; }
-    ;
+    		;
 
 compound_condition: condition {$$ = $1; } 
-									| condition AND condition {Node* n = new Node("and"); n->add_child($1), n->add_child($3); $$=n;} 
-									| condition OR condition {Node* n = new Node("or"); n->add_child($1), n->add_child($3); $$=n;}
+		  | condition AND condition {Node* n = new Node("and"); n->add_child($1), n->add_child($3); $$=n;} 
+	          | condition OR condition {Node* n = new Node("or"); n->add_child($1), n->add_child($3); $$=n;}
                   ; 
 
 condition: expression comparison expression { Node* n = new Node("condition"); n->add_child($1); n->add_child($2); n->add_child($3); $$=n; };
 
 comparison : EQUALS { $$ = new Node("equals"); }
-					 | GT { $$ = new Node("gt"); }
-					 | LT { $$ = new Node("lt"); }
-					 | GORE { $$ = new Node("gore"); }
-					 | LORE { $$ = new Node("lore"); }
-           ;
+		    | GT { $$ = new Node("gt"); }
+		    | LT { $$ = new Node("lt"); }
+		    | GORE { $$ = new Node("gore"); }
+		    | LORE { $$ = new Node("lore"); }
+	            ;
 
 //number_literal: NUMBER { Constant* n = new Constant("number_literal"); n->set_value($1); $$ = n; };
 
 color_literal: BLACK { $$ = 0; }
-						 | WHITE { $$ = 1; } 
-						 | RED { $$ = 2; } 
+	     | WHITE { $$ = 1; } 
+	     | RED { $$ = 2; } 
              | CYAN { $$ = 3; } 
- 						 | PURPLE { $$ = 4; } 
+ 	     | PURPLE { $$ = 4; } 
              | GREEN { $$ = 5; } 
              | BLUE { $$ = 6; } 
              | YELLOW { $$ = 7; } 
@@ -179,14 +203,21 @@ color_literal: BLACK { $$ = 0; }
              | LTGREY { $$ = 15; }
              ;              
 
-note_literal: NOTE { StringConstant* n = new StringConstant("note_literal"); n->set_value($1); $$ = n; };
+note_literal: NOTE { Constant* n = new Constant("note_literal"); n->set_value($1); $$ = n; };
+
 
 %%
 
+struct Node* cur_node = NULL;
 int main( int argc, char* argv[])
 {
-    yyparse();
-    print_program();
+  	cur_node->setup_sound();
+	cur_node->play_sound(2145,60);
+	cur_node->play_sound(3215,60);
+	cur_node->play_sound(2145,60);
+        rts();
+    	yyparse();
+    	print_program();
 }
 
 void yyerror(const char* msg)
