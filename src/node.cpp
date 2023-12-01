@@ -726,51 +726,19 @@ int Node::generate_code() const //TODO pls
 			}
 			const Constant* note = dynamic_cast<const Constant *>(m_children[0]);;
 			const Constant* dur = dynamic_cast<const Constant *>(m_children[1]);;
-			//int dur = m_children[1]->generate_code();
-			cout << "NOTE: " << note->value() << endl;
-			cout << "DURA: " << dur->value() << endl;
+			//cout << "NOTE: " << note->value() << endl;									//DEBUG
+			//cout << "DURA: " << dur->value() << endl;										//DEBUG
       if (!note) {
-					abort( "Invalid Note\n", m_lineno );
+			abort( "Invalid Note\n", m_lineno );
       }
-			else if( note->value() == 0 ){
-	 			 play_sound(0,dur->value());
-			}
-			else if( note->value() == 1 ){
-	 			 play_sound(100,dur->value());
-			}
-			else if( note->value() == 2 ){
-	 			 play_sound(200,dur->value());
-			}
-			else if( note->value() == 3 ){
-	 			 play_sound(300,dur->value());
-			}
-			else if( note->value() == 4 ){
-	 			 play_sound(400,dur->value());
-			}
-			else if( note->value() == 5 ){
-	 			 play_sound(500,dur->value());
-			}
-			else if( note->value()  == 6 ){
-	 			 play_sound(600,dur->value());
-			}
-			else if( note->value()  == 7 ){
-	 			 play_sound(700,dur->value());
-			}
-			else if( note->value()  == 8 ){
-	 			 play_sound(800,dur->value());
-			}
-			else if( note->value()  == 9 ){
-	 			 play_sound(900,dur->value());
-			}
-			else if( note->value()  == 10 ){
-	 			 play_sound(1000,dur->value());
-			}
-			else if( note->value()  == 11 ){
-	 			 play_sound(1100,dur->value());
-			}
-			else if( note->value()  == 12 ){
-	 			 play_sound(1200,dur->value());
-			}
+
+	  else if (!dur) {
+			abort( "Invald Duration\n", m_lineno );
+	  }
+		  
+	  else {
+			play_sound( note->value()*100, dur->value() );
+	  }
    }
    else {
       abort(string("Unimplemented token: ") + m_token, m_lineno);
