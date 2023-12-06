@@ -1,4 +1,4 @@
-# BNF for [pending language name]
+# BNF for MeowText
 
 <program> ::= Hello <code> Bye
 
@@ -11,10 +11,12 @@
               | <rectangle_statement>
 		      | <pixel_statement>
 		      | <music_statement>
+		      | <clear_statement>
+		      | <background_statement>
 
 <assignment_statement> ::= VARIABLE ASSIGNMENT expression PERIOD
 
-<loop_satement> ::= LOOPHEAD compound_condition BEGIN code END
+<loop_statement> ::= LOOPHEAD compound_condition BEGIN code END
 
 <if_statement> ::= IFHEAD compound_condition BEGIN code END
 
@@ -22,7 +24,11 @@
 
 <pixel_statement> ::= PIXEL color_literal COMMA expression COMMA expression PERIOD
 
-<music_statement> ::= MUSIC note_literal PERIOD
+<music_statement> ::= MUSIC note_literal COMMA expression PERIOD
+
+<clear_statement> ::= CLEAR PERIOD
+
+<background_statement> ::= BACKGROUND color_literal PERIOD
 
 expression ::= factor
 			 | expression PLUS factor
@@ -62,4 +68,16 @@ color_literal ::= BLACK
 				| LTBLUE
 				| LTGREY
 
-note_literal ::= note
+note_literal ::= A
+               | ASHARP
+               | B
+               | C
+               | CSHARP
+               | D
+               | DSHARP
+               | E
+               | F
+               | FSHARP
+               | G
+               | GSHARP
+               | HIGHA
